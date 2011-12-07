@@ -1,0 +1,12 @@
+org.exoplatform.social.client.api
+org.exoplatform.social.client.api.auth
+org.exoplatform.social.client.api.common
+org.exoplatform.social.client.api.event
+org.exoplatform.social.client.api.model
+org.exoplatform.social.client.api.net
+org.exoplatform.social.client.api.service
+org.exoplatform.social.client.core
+org.exoplatform.social.client.core.model
+org.exoplatform.social.client.core.net
+org.exoplatform.social.client.core.service
+org.exoplatform.social.client.core.util
