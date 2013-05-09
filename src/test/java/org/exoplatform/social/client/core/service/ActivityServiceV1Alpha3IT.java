@@ -16,6 +16,12 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +37,6 @@ import org.exoplatform.social.client.core.AbstractClientTestV1Alpha3;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.fail;
 
 
 /**
@@ -60,7 +62,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
 
   @Override
   public void beforeTearDown() {
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     for (RestActivity activity : tearDownActivityList) {
       try {
         activityService.delete(activity);
@@ -107,7 +109,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     }
 
     //create a activity to demo's stream
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     RestActivity demoActivity = createActivities(1).get(0);
     startSessionAsAnonymous();
 
@@ -147,8 +149,8 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("demo", "gtn");
-    RestIdentity restIdentity = identityService.getIdentity("organization", "demo");
+    startSessionAs("root", "gtngtn");
+    RestIdentity restIdentity = identityService.getIdentity("organization", "root");
     RestActivity activity = new RestActivity();
     activity.setTitle("Hello World");
     RestActivity resultActivity = activityService.create(activity);
@@ -163,16 +165,19 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     RestActivity restActivity = createActivities(1).get(0);
     String activityId = restActivity.getId();
     RestActivity resultActivity = activityService.get(activityId);
 
     assertThat("test 0", equalTo(resultActivity.getTitle()));
+    assertNotNull(resultActivity.getLastUpdated());
+    assertTrue(resultActivity.getLastUpdated().longValue() > 0);
 
     RestActivityStream activityStream = resultActivity.getActivityStream();
-    assertThat(activityStream.getFullName(), equalTo("Demo gtn"));
+    assertThat(activityStream.getFullName(), equalTo("Root Root"));
     assertThat(activityStream.getType(), equalTo("organization"));
+    
   }
 
   @Test
@@ -185,7 +190,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     String activityId = createActivities(1).get(0).getId();
     RestActivity resultActivity = activityService.get(activityId);
     activityService.delete(resultActivity);

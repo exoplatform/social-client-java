@@ -72,21 +72,21 @@ public class SocialClientContextTest {
 
   @Test
   public void shouldGetSetValues() {
-    SocialClientContext.setHost("http://platform35.demo.exoplatform.org");
-    SocialClientContext.setPort(80);
+    SocialClientContext.setHost("http://localhost");
+    SocialClientContext.setPort(8080);
     SocialClientContext.setPortalContainerName("portal");
     SocialClientContext.setRestContextName("rest");
     SocialClientContext.setRestVersion("v1-alpha3");
-    SocialClientContext.setUsername("demo");
+    SocialClientContext.setUsername("root");
     SocialClientContext.setPassword("gtn");
     SocialClientContext.setIsDeveloping(true);
 
-    assertThat(SocialClientContext.getHost(), equalTo("http://platform35.demo.exoplatform.org"));
-    assertThat(SocialClientContext.getPort(), equalTo(80));
+    assertThat(SocialClientContext.getHost(), equalTo("http://localhost"));
+    assertThat(SocialClientContext.getPort(), equalTo(8080));
     assertThat(SocialClientContext.getPortalContainerName(), equalTo("portal"));
     assertThat(SocialClientContext.getRestContextName(), equalTo("rest"));
     assertThat(SocialClientContext.getRestVersion(), equalTo("v1-alpha3"));
-    assertThat(SocialClientContext.getUsername(), equalTo("demo"));
+    assertThat(SocialClientContext.getUsername(), equalTo("root"));
     assertThat(SocialClientContext.getPassword(), equalTo("gtn"));
     assertThat("SocialClientContext.isDeveloping() must return true", SocialClientContext.isDeveloping(),
               equalTo(true));

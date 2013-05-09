@@ -61,8 +61,8 @@ public abstract class AbstractClientTest {
     // Load host and port from System properties if available
     SocialClientContext.setHost(System.getProperty("social.server.host", "127.0.0.1"));
     SocialClientContext.setPort(Integer.getInteger("social.server.port", 8080));
-    SocialClientContext.setPortalContainerName("socialdemo");
-    SocialClientContext.setRestContextName("rest-socialdemo");
+    SocialClientContext.setPortalContainerName("portal");
+    SocialClientContext.setRestContextName("rest");
     setRestVersion();
     ClientServiceFactory clientServiceFactory = ClientServiceFactoryHelper.getClientServiceFactory();
     versionService = clientServiceFactory.createVersionService();

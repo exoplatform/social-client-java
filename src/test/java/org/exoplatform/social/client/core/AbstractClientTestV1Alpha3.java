@@ -32,7 +32,7 @@ import org.exoplatform.social.client.api.model.RestIdentity;
  */
 public abstract class AbstractClientTestV1Alpha3 extends AbstractClientTest {
 
-  private RestIdentity demoIdentity;
+  private RestIdentity rootIdentity;
 
   /**
    * {@inheritDoc}
@@ -47,11 +47,11 @@ public abstract class AbstractClientTestV1Alpha3 extends AbstractClientTest {
    *
    * @return Demo's Identity.
    */
-  protected RestIdentity getDemoIdentity() throws SocialClientLibException {
-    if (demoIdentity == null) {
-      demoIdentity = identityService.getIdentity("organization", "demo");
+  protected RestIdentity getRootIdentity() throws SocialClientLibException {
+    if (rootIdentity == null) {
+      rootIdentity = identityService.getIdentity("organization", "root");
     }
-    return demoIdentity;
+    return rootIdentity;
   }
 
 }

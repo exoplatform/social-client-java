@@ -43,7 +43,7 @@ public class IdentityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
   @Override
   public void setUp() {
     super.setUp();
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
   }
 
   @AfterMethod
@@ -97,7 +97,7 @@ public class IdentityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
     RestIdentity identity = identityService.get(id);
     assertThat("Identity must not be null", identity, notNullValue());
     assertThat("Identity provider must be organization", identity.getProviderId(), equalTo("organization"));
-    assertThat("RemoteId must be demo", identity.getRemoteId(), equalTo("demo"));
+    assertThat("RemoteId must be demo", identity.getRemoteId(), equalTo("root"));
     
     RestProfile profile = identity.getProfile();
     assertThat("profile must not be null", profile, notNullValue());
@@ -120,11 +120,11 @@ public class IdentityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
       return;
     }
     String expectedId = getDemoIdentityId();
-    String resultId = identityService.getIdentityId("organization", "demo");
+    String resultId = identityService.getIdentityId("organization", "root");
     assertThat("identity id must be " + expectedId, resultId, equalTo(expectedId));
     
     try {
-      resultId = identityService.getIdentityId(null, "demo");
+      resultId = identityService.getIdentityId(null, "root");
       fail("Expecting NullPointerException from IdentityService#getIdentityId(String, String)");
     } catch (NullPointerException npe) {
     }
@@ -141,12 +141,12 @@ public class IdentityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
     if (!canRunTest()) {
       return;
     }
-    RestIdentity restIdentity = identityService.getIdentity("organization", "demo");
+    RestIdentity restIdentity = identityService.getIdentity("organization", "root");
     assertThat("RestIdentity must not null.", restIdentity, notNullValue());
-    assertThat("RemoteId must be demo", "demo", equalTo(restIdentity.getRemoteId()));
+    assertThat("RemoteId must be root", "root", equalTo(restIdentity.getRemoteId()));
     assertThat("Provider must be organization", "organization", equalTo(restIdentity.getProviderId()));
     RestProfile restProfile = restIdentity.getProfile();
     assertThat("Avatar URL must be null", restProfile.getAvatarUrl(), nullValue());
-    assertThat("Profile's full name must be Demo gtn", "Demo gtn", equalTo(restProfile.getFullName()));
+    assertThat("Profile's full name must be root gtn", "Root Root", equalTo(restProfile.getFullName()));
   }
 }

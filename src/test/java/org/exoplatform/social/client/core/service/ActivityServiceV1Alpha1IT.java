@@ -56,7 +56,7 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
 
   @Override
   public void beforeTearDown() {
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     for (RestActivity activity : tearDownActivityList) {
       try {
         activityService.delete(activity);
@@ -80,7 +80,7 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     try {
       activityService.get("notfound");
       fail("Expecting NotFoundException from ActivityService#get(String)");
@@ -92,7 +92,7 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
     RestActivity activity = new RestActivity();
     activity.setTitle("Hello There");
       activityService.create(activity);
-    startSessionAs("mary", "gtn");
+    startSessionAs("mary", "gtngtn");
     try {
       activityService.update(activity);
       fail("Expecting ServiceException from ActivityService#update(RestActivity)");
@@ -100,9 +100,9 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
     }
 
     //create a activity to demo's stream
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
     RestActivity demoActivity = createActivities(1).get(0);
-    startSessionAs("mary", "gtn");
+    startSessionAs("mary", "gtngtn");
 
     RestComment comment = new RestComment();
     comment.setText("comment");
@@ -155,8 +155,8 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
   /*
   @Test
   public void testCreateGetDeleteActivity() {
-    startSessionAs("demo", "gtn");
-    String demoIdentityId = identityService.getIdentityId("organization", "demo");
+    startSessionAs("root", "gtngtn");
+    String demoIdentityId = identityService.getIdentityId("organization", "root");
 
     RestActivity restActivityToCreate = new RestActivityImpl();
     restActivityToCreate.setTitle("Hello PhuongLM!!!");
@@ -203,9 +203,9 @@ public class ActivityServiceV1Alpha1IT extends AbstractClientTestV1Alpha1 {
   /*
   @Test
   public void testGetActivitySteam() {
-    startSessionAs("demo", "gtn");
+    startSessionAs("root", "gtngtn");
 
-    String demoIdentityId = identityService.getIdentityId("organization", "demo");
+    String demoIdentityId = identityService.getIdentityId("organization", "root");
     RestIdentity demoIdentity = identityService.get(demoIdentityId);
 
     int i = 1;

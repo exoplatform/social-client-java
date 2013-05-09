@@ -74,6 +74,8 @@ public class RestActivity extends Model {
     TYPE("type"),
     /** the json field for postedTime. */
     POSTED_TIME("postedTime"),
+    /** the json field for lastUpdatedTime. */
+    LAST_UPDATED("lastUpdated"),
     /** the json field for posterIdentity. */
     POSTER_IDENTITY("posterIdentity"),
     /** the json field for createdAt. */
@@ -271,6 +273,18 @@ public class RestActivity extends Model {
   public Long getPostedTime() {
     return (Long) getField(Field.POSTED_TIME.toString());
   }
+  
+  /**
+   * Gets the time at which this activity took place in milliseconds since the epoch. Container
+   * support for this field is OPTIONAL.
+   *
+   * Higher priority ones are higher in the list.
+   *
+   * @return The last updated time at which this activity took place in milliseconds since the epoch
+   */
+  public Long getLastUpdated() {
+    return (Long) getField(Field.LAST_UPDATED.toString());
+  }
 
   /**
    * Sets the time at which this activity took place in milliseconds since the epoch Container
@@ -282,6 +296,18 @@ public class RestActivity extends Model {
    */
   public void setPostedTime(Long postedTime) {
     setField(Field.POSTED_TIME.toString(), postedTime);
+  }
+  
+  /**
+   * Sets the last updated time at which this activity took place in milliseconds since the epoch Container
+   * support for this field is OPTIONAL.
+   *
+   * This value can not be set by the end user.
+   *
+   * @param lastUpdated the time at which this activity took place in milliseconds since the epoch
+   */
+  public void setLastUpdated(Long lastUpdated) {
+    setField(Field.LAST_UPDATED.toString(), lastUpdated);
   }
 
   /**
