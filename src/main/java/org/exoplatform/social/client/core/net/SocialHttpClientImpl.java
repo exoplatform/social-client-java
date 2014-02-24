@@ -18,11 +18,20 @@ package org.exoplatform.social.client.core.net;
 
 import java.io.IOException;
 
+
 import org.apache.http.HttpException;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.HttpResponse;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.BasicHttpProcessor;
+import org.apache.http.protocol.ExecutionContext;
+import org.apache.http.protocol.HttpContext;
+import java.security.KeyStore;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.AuthState;
 import org.apache.http.auth.Credentials;
@@ -37,16 +46,10 @@ import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.BasicHttpProcessor;
-import org.apache.http.protocol.ExecutionContext;
-import org.apache.http.protocol.HttpContext;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.auth.UnAuthenticatedException;
@@ -112,6 +115,17 @@ public final class SocialHttpClientImpl implements SocialHttpClient {
 
     SchemeRegistry schemeRegistry = new SchemeRegistry();
     schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+    
+    try {
+	    // cf http://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https - SCL-60
+	    KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+	    trustStore.load(null, null);
+	    SSLSocketFactory sf = new OpenSSLSocketFactory(trustStore);
+	    sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+	    schemeRegistry.register(new Scheme("https", sf, 443));
+    } catch (Exception e) {
+    	
+    }
     ClientConnectionManager manager = new ThreadSafeClientConnManager(params, schemeRegistry);
     return new SocialHttpClientImpl(manager, params);
   }
