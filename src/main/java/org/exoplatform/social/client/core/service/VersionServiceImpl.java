@@ -16,16 +16,23 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.params.HttpClientParams;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.exoplatform.social.client.api.SocialClientContext;
+import org.exoplatform.social.client.api.auth.RedirectException;
 import org.exoplatform.social.client.api.net.SocialHttpClient.POLICY;
 import org.exoplatform.social.client.api.service.ServiceException;
 import org.exoplatform.social.client.api.service.VersionService;
 import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.*;
 
@@ -39,15 +46,43 @@ public class VersionServiceImpl implements VersionService {
 
   private final static String VERSION_FIELD = "version";
   private final static String SUPPORTED_FIELD = "versions";
+
   @Override
   public String getLatest() throws ServiceException{
     final String targetURL = "/" + SocialClientContext.getRestContextName() + "/api/social/version/latest.json";
+
     try {
       HttpResponse response = executeGet(targetURL, POLICY.NO_AUTH);
-      handleError(response);
+      handleErrorWithRedirect(response);
       String content = getContent(response);
       Map versionMap = SocialJSONDecodingSupport.parser(content);
       return (String) versionMap.get(VERSION_FIELD);
+    } catch (RedirectException ex) {
+      /** handle redirect */
+      return getLatestAfterRedirect(ex.getUrl());
+    } catch (Exception pex) {
+      throw new ServiceException(VersionServiceImpl.class, "Failed to getLatest version", pex);
+    }
+  }
+
+
+  private String getLatestAfterRedirect(String newUrl) throws ServiceException {
+    URL url;
+    final String targetURL = "/" + SocialClientContext.getRestContextName() + "/api/social/version/latest.json";
+
+    try {
+      url = new URL(newUrl);
+      SocialClientContext.setProtocol(url.getProtocol());
+      SocialClientContext.setHost(url.getHost());
+      SocialClientContext.setPort(url.getPort());
+      HttpResponse response = executeGet(targetURL, POLICY.NO_AUTH);
+      handleErrorWithRedirect(response);
+      String content = getContent(response);
+      Map versionMap = SocialJSONDecodingSupport.parser(content);
+      return (String) versionMap.get(VERSION_FIELD);
+    } catch (RedirectException ex) {
+      /** does not handle second redirect */
+      throw new ServiceException(VersionServiceImpl.class, "Does not handle second redirect", ex);
     } catch (Exception pex) {
       throw new ServiceException(VersionServiceImpl.class, "Failed to getLatest version", pex);
     }

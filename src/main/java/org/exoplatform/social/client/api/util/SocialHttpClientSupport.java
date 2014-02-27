@@ -41,6 +41,7 @@ import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.auth.AccessDeniedException;
 import org.exoplatform.social.client.api.auth.NotFoundException;
+import org.exoplatform.social.client.api.auth.RedirectException;
 import org.exoplatform.social.client.api.auth.UnAuthenticatedException;
 import org.exoplatform.social.client.api.model.Model;
 import org.exoplatform.social.client.api.net.SocialHttpClient;
@@ -384,6 +385,30 @@ public class SocialHttpClientSupport {
         throw new SocialClientLibException(response.getStatusLine().toString(), new AccessDeniedException());
       } else if(statusCode == 401){
         throw new SocialClientLibException(response.getStatusLine().toString(), new UnAuthenticatedException());
+      } else {
+        throw new ServiceException(response.getStatusLine().toString());
+      }
+    }
+  }
+
+  public static void handleErrorWithRedirect(HttpResponse response) throws SocialClientLibException, RedirectException {
+    int statusCode = response.getStatusLine().getStatusCode();
+
+    if (statusCode != 200) {
+      if(statusCode == 404){
+        throw new SocialClientLibException(response.getStatusLine().toString(), new NotFoundException());
+      } else if(statusCode == 403){
+        throw new SocialClientLibException(response.getStatusLine().toString(), new AccessDeniedException());
+      } else if(statusCode == 401){
+        throw new SocialClientLibException(response.getStatusLine().toString(), new UnAuthenticatedException());
+      } else if (statusCode == 301) {
+        /** handle redirect */
+        Header[] headers = response.getHeaders("Location");
+        if (headers != null && headers.length != 0) {
+          String newUrl = headers[headers.length - 1].getValue();
+          throw new RedirectException(newUrl);
+        }
+        throw new ServiceException(response.getStatusLine().toString());
       } else {
         throw new ServiceException(response.getStatusLine().toString());
       }
