@@ -31,17 +31,19 @@
     <!-- project dependencies versions -->
     <json_simple.version>1.1</json_simple.version>
     <org.apache.httpclient.version>4.0</org.apache.httpclient.version>
-    <org.slf4j.version>1.6.1</org.slf4j.version>
+    <org.slf4j.version>1.7.5</org.slf4j.version>
     
     <org.testng.version>6.1.1</org.testng.version>
     <org.hamcrest.version>1.2.1</org.hamcrest.version>
-    <ch.qos.logback.version>0.9.28</ch.qos.logback.version>
+    <ch.qos.logback.version>1.0.11</ch.qos.logback.version>
+    <janino.version>2.6.1</janino.version>
+    <janino.commons.compiler>2.6.1</janino.commons.compiler>
 
     <!-- ########################## -->
     <!-- Integration tests settings -->
     <!-- ########################## -->
     <!-- social server version -->
-    <social.server.version>1.2.7</social.server.version>
+    <social.server.version>4.0.5</social.server.version>
     <!-- integration tests options -->
     <social.server.host>127.0.0.1</social.server.host>
     <!-- skip cargo execution to use your own server ?? -->
@@ -98,35 +100,58 @@
       <version>${json_simple.version}</version>
       <scope>compile</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>${org.apache.httpclient.version}</version>
       <scope>compile</scope>
     </dependency>
-    
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${org.slf4j.version}</version>
       <scope>compile</scope>
     </dependency>
-    
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${org.slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${org.slf4j.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${org.testng.version}</version>
       <scope>test</scope>
     </dependency>
-    
     <dependency>
        <groupId>ch.qos.logback</groupId>
        <artifactId>logback-classic</artifactId>
        <version>${ch.qos.logback.version}</version>
        <scope>test</scope>
     </dependency>
-    
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${ch.qos.logback.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>${janino.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>commons-compiler</artifactId>
+      <version>${janino.commons.compiler}</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-core</artifactId>
@@ -332,10 +357,9 @@
                   <skip>${it.cargo.skip}</skip>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.exoplatform.social</groupId>
-                      <artifactId>exo.social.packaging.pkg</artifactId>
+                      <groupId>org.exoplatform.platform.distributions</groupId>
+                      <artifactId>plf-community-tomcat-standalone</artifactId>
                       <version>${social.server.version}</version>
-                      <classifier>tomcat</classifier>
                       <type>zip</type>
                       <overWrite>false</overWrite>
                       <outputDirectory>${project.build.directory}/social-server/</outputDirectory>
@@ -360,9 +384,9 @@
             </executions>
             <configuration>
               <patches>
-                <patch>server.xml.patch</patch>
+                <patchFile>server.xml.patch</patchFile>
               </patches>
-              <targetDirectory>${project.build.directory}/social-server/eXoSocial-${social.server.version}/conf/</targetDirectory>
+              <targetDirectory>${project.build.directory}/social-server/platform-community-${social.server.version}/conf/</targetDirectory>
               <skipApplication>${it.cargo.skip}</skipApplication>
             </configuration>
           </plugin>
@@ -390,35 +414,73 @@
               <skip>${it.cargo.skip}</skip>
               <!-- Container configuration -->
               <container>
-                <containerId>tomcat6x</containerId>
-                <home>${project.build.directory}/social-server/eXoSocial-${social.server.version}/</home>
+                <containerId>tomcat7x</containerId>
+                <home>${project.build.directory}/social-server/platform-community-${social.server.version}/</home>
                 <type>installed</type>
                 <timeout>240000</timeout>
                 <systemProperties>
                   <java.util.logging.manager>org.apache.juli.ClassLoaderLogManager</java.util.logging.manager>
-                  <java.util.logging.config.file>${project.build.directory}/social-server/eXoSocial-${social.server.version}/conf/logging.properties</java.util.logging.config.file>
+                  <java.util.logging.config.file>${project.build.directory}/social-server/platform-community-${social.server.version}/conf/logging.properties</java.util.logging.config.file>
+                  <java.security.auth.login.config>${project.build.directory}/social-server/platform-community-${social.server.version}/conf/jaas.conf</java.security.auth.login.config>
                   <org.apache.commons.logging.Log>org.apache.commons.logging.impl.SimpleLog</org.apache.commons.logging.Log>
-                  <java.security.auth.login.config>${project.build.directory}/social-server/eXoSocial-${social.server.version}/conf/jaas.conf</java.security.auth.login.config>
+                  <logback.configurationFile>${project.build.directory}/social-server/platform-community-${social.server.version}/conf/logback.xml</logback.configurationFile>
+                  
                   <exo.product.developing>false</exo.product.developing>
                   <exo.conf.dir.name>gatein/conf</exo.conf.dir.name>
-                  <!-- These 2 properties below are configured by Social 1.2.x and 1.3.x's configuration file -->
-                  <gatein.gadgets.securityTokenKeyFile>${project.build.directory}/social-server/eXoSocial-${social.server.version}/gatein/conf/gadgets/key.txt</gatein.gadgets.securityTokenKeyFile>
-                  <gatein.gadgets.signingKeyFile>${project.build.directory}/social-server/eXoSocial-${social.server.version}/gatein/conf/gadgets/oauthkey.pem</gatein.gadgets.signingKeyFile>
+                  <exo.jcr.session.tracking.active>false</exo.jcr.session.tracking.active>
+                  <exo.profiles>all</exo.profiles> 
+                  <exo.conf.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf</exo.conf.dir>
+
+                  <gatein.conf.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf</gatein.conf.dir>
+                  <gatein.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data</gatein.data.dir>
+                  <gatein.jcr.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr</gatein.jcr.data.dir>
+                  <gatein.jcr.storage.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr/values</gatein.jcr.storage.data.dir>
+                  <gatein.jcr.index.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr/index</gatein.jcr.index.data.dir>
+                  <gatein.assets.version>4.0.4</gatein.assets.version> 
+                  <gatein.gadgets.signingKeyFile>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf/gadgets/oauthkey.pem</gatein.gadgets.signingKeyFile>
                   <!-- Controller configuration -->
-                  <gatein.portal.controller.config>${project.build.directory}/social-server/eXoSocial-${social.server.version}/gatein/conf/controller.xml</gatein.portal.controller.config>
+                  <gatein.portal.controller.config>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf/controller.xml</gatein.portal.controller.config>
                   <!-- Ports to be used by the server -->
                   <social.server.http.port>${social.server.http.port}</social.server.http.port>
                   <social.server.ajp.port>${social.server.ajp.port}</social.server.ajp.port>
                   <social.server.shutdown.port>${social.server.shutdown.port}</social.server.shutdown.port>
                 </systemProperties>
+                
+                <dependencies> 
+					<dependency>
+					  <groupId>org.slf4j</groupId>
+					  <artifactId>slf4j-api</artifactId>
+					</dependency>
+					<dependency>
+					  <groupId>org.slf4j</groupId>
+					  <artifactId>jul-to-slf4j</artifactId>
+					</dependency>
+					<dependency>
+					  <groupId>ch.qos.logback</groupId>
+					  <artifactId>logback-classic</artifactId>
+					</dependency>
+					<dependency>
+					  <groupId>ch.qos.logback</groupId>
+					  <artifactId>logback-core</artifactId>
+					</dependency>
+					<dependency>
+					  <groupId>org.codehaus.janino</groupId>
+					  <artifactId>janino</artifactId>
+					</dependency>
+					<dependency>
+					  <groupId>org.codehaus.janino</groupId>
+					  <artifactId>commons-compiler</artifactId>
+					</dependency>
+                </dependencies>
+                
               </container>
               <!-- Configuration to use with the container -->
               <configuration>
                 <type>existing</type>
-                <home>${project.build.directory}/social-server/eXoSocial-${social.server.version}/</home>
+                <home>${project.build.directory}/social-server/platform-community-${social.server.version}/</home>
                 <properties>
                   <cargo.servlet.port>${social.server.http.port}</cargo.servlet.port>
-                  <cargo.jvm.args>-Xms128m -Xmx512m -XX:MaxPermSize=256m</cargo.jvm.args>
+                  <cargo.jvm.args>-Xms512m -Xmx2g -XX:MaxPermSize=256m </cargo.jvm.args>
                 </properties>
               </configuration>
             </configuration>

@@ -59,7 +59,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
 
   @Override
   public void beforeTearDown() {
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     for (RestActivity activity : tearDownActivityList) {
       try {
         activityService.delete(activity);
@@ -106,7 +106,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
     }
 
     //create a activity to demo's stream
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     RestActivity demoActivity = createActivities(1).get(0);
     startSessionAsAnonymous();
 
@@ -146,7 +146,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     RestIdentity restIdentity = identityService.getIdentity("organization", "root");
     RestActivity activity = new RestActivity();
     activity.setTitle("Hello World");
@@ -162,7 +162,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     RestActivity restActivity = createActivities(1).get(0);
     String activityId = restActivity.getId();
     RestActivity resultActivity = activityService.get(activityId);
@@ -180,7 +180,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     String activityId = createActivities(1).get(0).getId();
     RestActivity resultActivity = activityService.get(activityId);
     activityService.delete(resultActivity);
@@ -200,7 +200,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
   /*
   @Test
   public void testCreateGetDeleteActivity() {
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     String demoIdentityId = identityService.getIdentityId("organization", "root");
 
     RestActivity restActivityToCreate = new RestActivityImpl();
@@ -248,7 +248,7 @@ public class ActivityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
   /*
   @Test
   public void testGetActivitySteam() {
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
 
     String demoIdentityId = identityService.getIdentityId("organization", "root");
     RestIdentity demoIdentity = identityService.get(demoIdentityId);

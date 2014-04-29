@@ -47,7 +47,7 @@ public class IdentityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
 
   @Override
   public void afterSetup() {
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
   }
 
   @AfterMethod
