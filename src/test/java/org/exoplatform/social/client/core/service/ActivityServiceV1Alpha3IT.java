@@ -62,7 +62,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
 
   @Override
   public void beforeTearDown() {
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     for (RestActivity activity : tearDownActivityList) {
       try {
         activityService.delete(activity);
@@ -109,7 +109,8 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     }
 
     //create a activity to demo's stream
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
+    
     RestActivity demoActivity = createActivities(1).get(0);
     startSessionAsAnonymous();
 
@@ -149,7 +150,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     RestIdentity restIdentity = identityService.getIdentity("organization", "root");
     RestActivity activity = new RestActivity();
     activity.setTitle("Hello World");
@@ -165,7 +166,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     RestActivity restActivity = createActivities(1).get(0);
     String activityId = restActivity.getId();
     RestActivity resultActivity = activityService.get(activityId);
@@ -190,7 +191,7 @@ public class ActivityServiceV1Alpha3IT extends AbstractClientTestV1Alpha3 {
     if (!canRunTest()) {
       return;
     }
-    startSessionAs("root", "gtngtn");
+    startSessionAs("root", "gtn");
     String activityId = createActivities(1).get(0).getId();
     RestActivity resultActivity = activityService.get(activityId);
     activityService.delete(resultActivity);
