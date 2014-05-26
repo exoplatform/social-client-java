@@ -48,6 +48,8 @@
     <social.server.host>127.0.0.1</social.server.host>
     <!-- skip cargo execution to use your own server ?? -->
     <it.cargo.skip>false</it.cargo.skip>
+    <!-- appserver startup timeout -->
+    <it.cargo.timeout>240000</it.cargo.timeout>
 
     <!-- ################ -->
     <!-- Build properties -->
@@ -417,7 +419,7 @@
                 <containerId>tomcat7x</containerId>
                 <home>${project.build.directory}/social-server/platform-community-${social.server.version}/</home>
                 <type>installed</type>
-                <timeout>240000</timeout>
+                <timeout>${it.cargo.timeout}</timeout>
                 <systemProperties>
                   <java.util.logging.manager>org.apache.juli.ClassLoaderLogManager</java.util.logging.manager>
                   <java.util.logging.config.file>${project.build.directory}/social-server/platform-community-${social.server.version}/conf/logging.properties</java.util.logging.config.file>
