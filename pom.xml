@@ -3,7 +3,7 @@
 
   <groupId>org.exoplatform.social</groupId>
   <artifactId>exo.social.client</artifactId>
-  <version>1.0.0-alpha4-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>exo.social.client</name>
@@ -436,7 +436,6 @@
                   <gatein.jcr.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr</gatein.jcr.data.dir>
                   <gatein.jcr.storage.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr/values</gatein.jcr.storage.data.dir>
                   <gatein.jcr.index.data.dir>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/data/jcr/index</gatein.jcr.index.data.dir>
-                  <gatein.assets.version>4.0.4</gatein.assets.version> 
                   <gatein.gadgets.signingKeyFile>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf/gadgets/oauthkey.pem</gatein.gadgets.signingKeyFile>
                   <!-- Controller configuration -->
                   <gatein.portal.controller.config>${project.build.directory}/social-server/platform-community-${social.server.version}/gatein/conf/controller.xml</gatein.portal.controller.config>
