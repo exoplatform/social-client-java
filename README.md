@@ -1,6 +1,6 @@
 # eXo Social Client Java Library
 
-http://exoplatform.org/company/en/platform/exo-extended-services/exo-social
+https://github.com/exoplatform/social-client-java
 
 
 ## How to develop
@@ -8,31 +8,36 @@ http://exoplatform.org/company/en/platform/exo-extended-services/exo-social
 * Project dependencies:
     + json_simple-1.1           (compile)   :     http://code.google.com/p/json-simple/
     + httpclient-4.0            (compile)   :     http://hc.apache.org/httpcomponents-client-ga/
-    + slf4j-api-1.6.1           (compile)   :     http://www.slf4j.org
+    + slf4j-api-1.7.5           (compile)   :     http://www.slf4j.org
     + testng-6.1.1              (test)      :     http://testng.org/doc/index.html
-    + logback-classic-0.9.28    (test)      :     http://logback.qos.ch/
+    + logback-classic-1.0.11    (test)      :     http://logback.qos.ch/
     + org.hamcrest-core-1.2.1   (test)      :     http://code.google.com/p/hamcrest/
 
 * mvn dependency:tree
   <pre>
-     org.exoplatform.social:exo.social.client:jar:1.0.0-alpha3
-     +- com.googlecode:json_simple:jar:1.1:compile
-     +- org.apache.httpcomponents:httpclient:jar:4.0:compile
-     |  +- org.apache.httpcomponents:httpcore:jar:4.0.1:compile
-     |  +- commons-logging:commons-logging:jar:1.1.1:compile
-     |  \- commons-codec:commons-codec:jar:1.3:compile
-     +- org.slf4j:slf4j-api:jar:1.6.1:compile
-     +- org.testng:testng:jar:6.1.1:test
-     |  +- junit:junit:jar:3.8.1:test
-     |  +- org.beanshell:bsh:jar:2.0b4:test
-     |  +- com.beust:jcommander:jar:1.12:test
-     |  \- org.yaml:snakeyaml:jar:1.6:test
-     +- ch.qos.logback:logback-classic:jar:0.9.28:test
-     |  \- ch.qos.logback:logback-core:jar:0.9.28:test
-     \- org.hamcrest:hamcrest-core:jar:1.2.1:test
+org.exoplatform.social:social-client-java:jar:1.0.0-SNAPSHOT
+ +- com.googlecode:json_simple:jar:1.1:compile
+ +- org.apache.httpcomponents:httpclient:jar:4.0:compile
+ |  +- org.apache.httpcomponents:httpcore:jar:4.0.1:compile
+ |  +- commons-logging:commons-logging:jar:1.1.1:compile
+ |  \- commons-codec:commons-codec:jar:1.3:compile
+ +- org.slf4j:slf4j-api:jar:1.7.5:compile
+ +- org.slf4j:jul-to-slf4j:jar:1.7.5:compile
+ +- org.slf4j:slf4j-log4j12:jar:1.7.5:compile
+ |  \- log4j:log4j:jar:1.2.17:compile
+ +- org.testng:testng:jar:6.1.1:test
+ |  +- junit:junit:jar:3.8.1:test
+ |  +- org.beanshell:bsh:jar:2.0b4:test
+ |  +- com.beust:jcommander:jar:1.12:test
+ |  \- org.yaml:snakeyaml:jar:1.6:test
+ +- ch.qos.logback:logback-classic:jar:1.0.11:test
+ +- ch.qos.logback:logback-core:jar:1.0.11:test
+ +- org.codehaus.janino:janino:jar:2.6.1:test
+ +- org.codehaus.janino:commons-compiler:jar:2.6.1:test
+ \- org.hamcrest:hamcrest-core:jar:1.2.1:test
   </pre>
 
-This library is tested with http client 4.0 and above (4.0.1, 4.0.2, 4.0.3, 4.1, 4.1.1).
+This library is tested with HttpClient 4.0 and above (4.0.1, 4.0.2, 4.0.3, 4.1, 4.1.1).
 
 ### Prepare your environment
 
