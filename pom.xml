@@ -18,6 +18,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <artifactId>maven-parent-pom</artifactId>
+    <groupId>org.exoplatform</groupId>
+    <version>14</version>
+    <relativePath />
+  </parent>
+
   <groupId>org.exoplatform.social</groupId>
   <artifactId>social-client-java</artifactId>
   <version>1.0.0-SNAPSHOT</version>
@@ -90,21 +97,10 @@
     <exo.snapshots.repo.url>dav:http://repository.exoplatform.org/content/repositories/exo-snapshots/</exo.snapshots.repo.url>
   </properties>
 
-  <distributionManagement>
-    <repository>
-      <id>repository.exoplatform.org</id>
-      <url>${exo.releases.repo.url}</url>
-    </repository>
-    <snapshotRepository>
-      <id>repository.exoplatform.org</id>
-      <url>${exo.snapshots.repo.url}</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <scm>
-    <connection>scm:git:git://github.com/exosocial/exo.social.client.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/exosocial/exo.social.client.git</developerConnection>
-    <url>https://github.com/exosocial/exo.social.client</url>
+    <connection>scm:git:git://github.com/exoplatform/social-client-java.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/exoplatform/social-client-java.git</developerConnection>
+    <url>https://github.com/exoplatform/social-client-java</url>
   </scm>
 
   <issueManagement>
