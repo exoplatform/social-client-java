@@ -26,7 +26,7 @@
 
   <groupId>org.exoplatform.social</groupId>
   <artifactId>social-client-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Social Java Client</name>
@@ -100,7 +100,7 @@
     <connection>scm:git:git://github.com/exoplatform/social-client-java.git</connection>
     <developerConnection>scm:git:git@github.com:exoplatform/social-client-java.git</developerConnection>
     <url>https://github.com/exoplatform/social-client-java</url>
-    <tag>1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
