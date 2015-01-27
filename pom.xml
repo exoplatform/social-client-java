@@ -33,12 +33,6 @@
   <url>https://github.com/exoplatform/social-client-java</url>
   <inceptionYear>2011</inceptionYear>
 
-  <organization>
-    <name>eXo Platform</name>
-    <url>http://www.exoplatform.org</url>
-  </organization>
-
- 
   <properties>
     <!-- ################ -->
     <!-- Project settings -->
@@ -47,9 +41,6 @@
     <!-- java version -->
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
-
-    <!-- encoding -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- project dependencies versions -->
     <json_simple.version>1.1</json_simple.version>
@@ -79,21 +70,8 @@
     <!-- ################ -->
 
     <!-- Maven plugins versions to use -->
-    <cargo-maven2-plugin.version>1.1.1</cargo-maven2-plugin.version>
-    <maven-failsafe-plugin.version>2.9</maven-failsafe-plugin.version>
-    <maven-source-plugin.version>2.1.2</maven-source-plugin.version>
-    <maven-surefire-plugin.version>2.9</maven-surefire-plugin.version>
-    <maven-deploy-plugin.version>2.6</maven-deploy-plugin.version>
-    <build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
+    <version.cargo.plugin>1.1.1</version.cargo.plugin>
     <maven-patch-plugin.version>1.1.1</maven-patch-plugin.version>
-    <maven-dependency-plugin.version>2.2</maven-dependency-plugin.version>
-    <wagon-webdav-jackrabbit.version>1.0-beta-7</wagon-webdav-jackrabbit.version>
-
-    <!-- ***************** -->
-    <!-- webdav required to safely deploy large artifacts -->
-    <!-- ***************** -->
-    <exo.releases.repo.url>dav:http://repository.exoplatform.org/service/local/staging/deploy/maven2/</exo.releases.repo.url>
-    <exo.snapshots.repo.url>dav:http://repository.exoplatform.org/content/repositories/exo-snapshots/</exo.snapshots.repo.url>
   </properties>
 
   <scm>
@@ -130,11 +108,6 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
       <version>${org.slf4j.version}</version>
     </dependency>
     <dependency>
@@ -187,69 +160,12 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.codehaus.cargo</groupId>
-          <artifactId>cargo-maven2-plugin</artifactId>
-          <version>${cargo-maven2-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>${maven-failsafe-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${maven-source-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${maven-surefire-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${maven-deploy-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>${build-helper-maven-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-patch-plugin</artifactId>
           <version>${maven-patch-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <!-- Required by Maven 3+ to deploy artifacts in webdav -->
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-webdav-jackrabbit</artifactId>
-            <version>${wagon-webdav-jackrabbit.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
   </build>
 
   <profiles>
@@ -360,7 +276,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
-            <version>${maven-dependency-plugin.version}</version>
             <executions>
               <execution>
                 <id>unpack</id>
@@ -459,34 +374,32 @@
                   <social.server.ajp.port>${social.server.ajp.port}</social.server.ajp.port>
                   <social.server.shutdown.port>${social.server.shutdown.port}</social.server.shutdown.port>
                 </systemProperties>
-                
                 <dependencies> 
-					<dependency>
-					  <groupId>org.slf4j</groupId>
-					  <artifactId>slf4j-api</artifactId>
-					</dependency>
-					<dependency>
-					  <groupId>org.slf4j</groupId>
-					  <artifactId>jul-to-slf4j</artifactId>
-					</dependency>
-					<dependency>
-					  <groupId>ch.qos.logback</groupId>
-					  <artifactId>logback-classic</artifactId>
-					</dependency>
-					<dependency>
-					  <groupId>ch.qos.logback</groupId>
-					  <artifactId>logback-core</artifactId>
-					</dependency>
-					<dependency>
-					  <groupId>org.codehaus.janino</groupId>
-					  <artifactId>janino</artifactId>
-					</dependency>
-					<dependency>
-					  <groupId>org.codehaus.janino</groupId>
-					  <artifactId>commons-compiler</artifactId>
-					</dependency>
+                  <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                  </dependency>
+                  <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jul-to-slf4j</artifactId>
+                  </dependency>
+                  <dependency>
+                     <groupId>ch.qos.logback</groupId>
+                     <artifactId>logback-classic</artifactId>
+                  </dependency>
+                  <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                  </dependency>
+                  <dependency>
+                    <groupId>org.codehaus.janino</groupId>
+                    <artifactId>janino</artifactId>
+                  </dependency>
+                  <dependency>
+                    <groupId>org.codehaus.janino</groupId>
+                    <artifactId>commons-compiler</artifactId>
+                  </dependency>
                 </dependencies>
-                
               </container>
               <!-- Configuration to use with the container -->
               <configuration>
