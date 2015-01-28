@@ -14,8 +14,7 @@
   Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -27,7 +26,7 @@
 
   <groupId>org.exoplatform.social</groupId>
   <artifactId>social-client-java</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Social Java Client</name>
@@ -79,6 +78,7 @@
     <connection>scm:git:git://github.com/exoplatform/social-client-java.git</connection>
     <developerConnection>scm:git:git@github.com:exoplatform/social-client-java.git</developerConnection>
     <url>https://github.com/exoplatform/social-client-java</url>
+    <tag>1.0.0</tag>
   </scm>
 
   <issueManagement>
