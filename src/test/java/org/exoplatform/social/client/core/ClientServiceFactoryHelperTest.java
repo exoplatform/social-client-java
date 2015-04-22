@@ -23,14 +23,17 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import org.exoplatform.social.client.api.ClientServiceFactory;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.SocialClientContext.SupportedVersion;
+import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.core.service.ActivityServiceImplV1Alpha1;
 import org.exoplatform.social.client.core.service.ActivityServiceImplV1Alpha2;
 import org.exoplatform.social.client.core.service.ActivityServiceImplV1Alpha3;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha1;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha2;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha3;
+import org.exoplatform.social.client.core.service.SpaceServiceImplV1Alpha3;
 import org.testng.annotations.Test;
 
 /**
@@ -59,6 +62,15 @@ public class ClientServiceFactoryHelperTest {
     assertThat("identityService must be instance of IdentityServiceImplV1Alpha3",
                identityService instanceof IdentityServiceImplV1Alpha3,
                equalTo(true));
+
+    SpaceService spaceService = null;
+    try {
+      spaceService = clientServiceFactory.createSpaceService();
+    } catch (SocialClientLibException e) {
+    }
+    assertThat("spaceService must be instance of SpaceServiceImplV1Alpha3",
+               spaceService instanceof SpaceServiceImplV1Alpha3,
+               equalTo(true));
   }
 
   @Test
@@ -73,6 +85,13 @@ public class ClientServiceFactoryHelperTest {
     assertThat("identityService must be instance of IdentityServiceImplV1Alpha2",
                identityService instanceof IdentityServiceImplV1Alpha2,
                equalTo(true));
+
+    SpaceService spaceService = null;
+    try {
+      spaceService = clientServiceFactory.createSpaceService();
+    } catch (SocialClientLibException e) {
+    }
+    assertThat("spaceService must be null because it is not supported in v1-alpha2", spaceService == null, equalTo(true));
   }
 
   @Test
@@ -87,6 +106,13 @@ public class ClientServiceFactoryHelperTest {
     assertThat("identityService must be instance of IdentityServiceImplV1Alpha1",
                identityService instanceof IdentityServiceImplV1Alpha1,
                equalTo(true));
+
+    SpaceService spaceService = null;
+    try {
+      spaceService = clientServiceFactory.createSpaceService();
+    } catch (SocialClientLibException e) {
+    }
+    assertThat("spaceService must be null because it is not supported in v1-alpha1", spaceService == null, equalTo(true));
   }
 
 }

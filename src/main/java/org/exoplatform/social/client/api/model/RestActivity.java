@@ -18,26 +18,26 @@ package org.exoplatform.social.client.api.model;
 
 import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
 
-import org.apache.http.HttpResponse;
-import org.exoplatform.social.client.api.SocialClientLibException;
-import org.exoplatform.social.client.api.net.SocialHttpClientException;
-import org.exoplatform.social.client.api.net.SocialHttpClient.POLICY;
-import org.exoplatform.social.client.api.service.ActivityService;
-import org.exoplatform.social.client.api.service.IdentityService;
-import org.exoplatform.social.client.api.service.QueryParams;
-import org.exoplatform.social.client.api.service.ServiceException;
-import org.exoplatform.social.client.core.ClientServiceFactoryHelper;
-import org.exoplatform.social.client.core.service.QueryParamsImpl;
-import org.exoplatform.social.client.api.util.SocialHttpClientSupport;
-import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
-import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.exoplatform.social.client.api.SocialClientLibException;
+import org.exoplatform.social.client.api.net.SocialHttpClient.POLICY;
+import org.exoplatform.social.client.api.net.SocialHttpClientException;
+import org.exoplatform.social.client.api.service.ActivityService;
+import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.QueryParams;
+import org.exoplatform.social.client.api.service.ServiceException;
+import org.exoplatform.social.client.api.util.SocialHttpClientSupport;
+import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
+import org.exoplatform.social.client.core.ClientServiceFactoryHelper;
+import org.exoplatform.social.client.core.service.QueryParamsImpl;
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * eXo Social Activity model based on OpenSocial Activity Spec 0.8.1:
@@ -62,6 +62,8 @@ public class RestActivity extends Model {
   public final static String  DEFAULT_ACTIVITY_TYPE = "DEFAULT_ACTIVITY";
 
   public final static String  LINK_ACTIVITY_TYPE    = "LINK_ACTIVITY";
+
+  public final static String  SPACE_ACTIVITY_TYPE   = "exosocial:spaces";
 
   /**
    * The fields that represent the activity object in json form.
@@ -561,8 +563,8 @@ public class RestActivity extends Model {
         // get ActivityStream when JSON content is existing.
         restActivityStream = activity.getActivityStream();
 
-        // caching for ActivityStreamJSON content in this RestActivity which
-        // avoid Request again.
+        // caching for ActivityStreamJSON content in this RestActivity
+        // which avoid Request again.
         this.setField(RestActivity.Field.ACTIVITY_STREAM.toString(),
                       activity.getFieldAsString(RestActivity.Field.ACTIVITY_STREAM.toString()));
       }

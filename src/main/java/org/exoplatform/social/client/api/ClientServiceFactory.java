@@ -18,6 +18,7 @@ package org.exoplatform.social.client.api;
 
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.api.service.VersionService;
 
 /**
@@ -49,5 +50,13 @@ public interface ClientServiceFactory {
    * @return the identity service
    */
   IdentityService createIdentityService();
+
+  /**
+   * Gets the service to retrieve information about the social spaces
+   * 
+   * @return the social space service
+   * @throws SocialClientLibException
+   */
+  SpaceService createSpaceService() throws SocialClientLibException;
 
 }

@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class IdentityImplTest {
 
   @Test
-  public void shouldCreteInstanceAndGetFields() {
+  public void shouldCreateInstanceAndGetFields() {
     RestProfile restProfile = new RestProfile();
     RestIdentity restIdentity = new RestIdentity("123", "organization", "demo", restProfile);
     assertThat("restIdentity.getId() must return 123", restIdentity.getId(), equalTo("123"));

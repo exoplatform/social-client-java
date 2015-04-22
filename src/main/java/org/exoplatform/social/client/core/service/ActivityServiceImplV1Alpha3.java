@@ -16,6 +16,12 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.buildCommonRestPathFromContext;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executePost;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
+
 import org.apache.http.HttpResponse;
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.UnsupportedMethodException;
@@ -29,17 +35,11 @@ import org.exoplatform.social.client.api.net.SocialHttpClientException;
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.QueryParams;
 import org.exoplatform.social.client.api.service.ServiceException;
-import org.exoplatform.social.client.core.service.ActivitiesRealtimeListAccessV1Alpha3.ActivityType;
 import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
+import org.exoplatform.social.client.core.service.ActivitiesRealtimeListAccessV1Alpha3.ActivityType;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
-
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.buildCommonRestPathFromContext;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executePost;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
 
 /**
  * Implementation of {@link ActivityService}.
@@ -47,6 +47,7 @@ import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.han
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jun 28, 2011
  */
+
 public class ActivityServiceImplV1Alpha3 extends ServiceBase<RestActivity, ActivityService<RestActivity>> implements
     ActivityService<RestActivity> {
   private static final String BASE_URL = buildCommonRestPathFromContext(true);
@@ -56,7 +57,9 @@ public class ActivityServiceImplV1Alpha3 extends ServiceBase<RestActivity, Activ
    */
   @Override
   public RestActivity create(RestActivity newInstance) throws SocialClientLibException {
-    final String POST_ACTIVITY_REQUEST_URL = BASE_URL + "activity.json";
+    boolean toSpace = RestActivity.SPACE_ACTIVITY_TYPE.equals(newInstance.getType());
+    final String POST_ACTIVITY_REQUEST_URL = BASE_URL + "activity.json"
+        + (toSpace ? "?identity_id=" + newInstance.getIdentityId() : "");
     try {
       HttpResponse response = executePost(POST_ACTIVITY_REQUEST_URL, POLICY.BASIC_AUTH, newInstance);
       String responseContent = getContent(response);
@@ -235,10 +238,11 @@ public class ActivityServiceImplV1Alpha3 extends ServiceBase<RestActivity, Activ
     // ServiceException(ActivityServiceImplV1Alpha1.class,"invalid response: Status "
     // + statusCode, null);
     // } else {
-    // String responseContent = SocialHttpClientSupport.getContent(response);
+    // String responseContent =
+    // SocialHttpClientSupport.getContent(response);
     // try{
-    // RestComment comment = SocialJSONDecodingSupport.parser(RestComment.class,
-    // responseContent);
+    // RestComment comment =
+    // SocialJSONDecodingSupport.parser(RestComment.class, responseContent);
     // return comment;
     // } catch (Exception e) {
     // throw new
@@ -331,5 +335,6 @@ public class ActivityServiceImplV1Alpha3 extends ServiceBase<RestActivity, Activ
     } catch (ParseException e) {
       throw new ServiceException(ActivityServiceImplV1Alpha3.class, e.getMessage(), e);
     }
+
   }
 }

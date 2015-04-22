@@ -17,8 +17,10 @@
 package org.exoplatform.social.client.core;
 
 import org.exoplatform.social.client.api.ClientServiceFactory;
+import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.api.service.VersionService;
 import org.exoplatform.social.client.core.service.ActivityServiceImplV1Alpha1;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha1;
@@ -72,6 +74,11 @@ public class ClientServiceFactoryImplV1Alpha1 implements ClientServiceFactory {
       identityService = new IdentityServiceImplV1Alpha1();
     }
     return identityService;
+  }
+
+  @Override
+  public SpaceService createSpaceService() throws SocialClientLibException {
+    throw new SocialClientLibException("Space Service is not supported until v1-alpha3");
   }
 
 }

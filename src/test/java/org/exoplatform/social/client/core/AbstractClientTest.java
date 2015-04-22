@@ -18,11 +18,14 @@ package org.exoplatform.social.client.core;
 
 import org.exoplatform.social.client.api.ClientServiceFactory;
 import org.exoplatform.social.client.api.SocialClientContext;
+import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.UnsupportedRestVersionException;
 import org.exoplatform.social.client.api.model.RestActivity;
 import org.exoplatform.social.client.api.model.RestIdentity;
+import org.exoplatform.social.client.api.model.RestSpace;
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.api.service.VersionService;
 
 /**
@@ -42,6 +45,8 @@ public abstract class AbstractClientTest {
   protected IdentityService<RestIdentity> identityService;
 
   protected ActivityService<RestActivity> activityService;
+
+  protected SpaceService<RestSpace>       spaceService;
 
   private String                          defaultRestVersion;
 
@@ -76,6 +81,10 @@ public abstract class AbstractClientTest {
     }
     identityService = clientServiceFactory.createIdentityService();
     activityService = clientServiceFactory.createActivityService();
+    try {
+      spaceService = clientServiceFactory.createSpaceService();
+    } catch (SocialClientLibException e) {
+    }
     afterSetup();
   }
 
