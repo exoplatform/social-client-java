@@ -18,34 +18,45 @@ package org.exoplatform.social.client.api;
 
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
+import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.api.service.VersionService;
 
 /**
  * The main entry point to get eXo Social Services.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
 public interface ClientServiceFactory {
 
-  /**
-   * Gets version service to find information about latest and supported social rest ap versions.
-   *
-   * @return the version service
-   */
-  VersionService createVersionService();
+    /**
+     * Gets version service to find information about latest and supported
+     * social rest ap versions.
+     * 
+     * @return the version service
+     */
+    VersionService createVersionService();
 
-  /**
-   * Gets activity service to work with activities.
-   *
-   * @return the activity service
-   */
-  ActivityService createActivityService();
-  /**
-   * Gets account service for getting or updating identity info.
-   *
-   * @return the identity service
-   */
-  IdentityService createIdentityService();
+    /**
+     * Gets activity service to work with activities.
+     * 
+     * @return the activity service
+     */
+    ActivityService createActivityService();
+
+    /**
+     * Gets account service for getting or updating identity info.
+     * 
+     * @return the identity service
+     */
+    IdentityService createIdentityService();
+
+    /**
+     * Gets the service to retrieve information about the social spaces
+     * 
+     * @return the social space service
+     * @throws SocialClientLibException
+     */
+    SpaceService createSpaceService() throws SocialClientLibException;
 
 }
