@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 public class ActivitiesRealtimeListAccessV1Alpha2IT extends AbstractClientTestV1Alpha2 {
   private List<RestActivity> tearDownActivityList;
-  
+
   @BeforeMethod
   @Override
   public void setUp() {
@@ -41,19 +41,23 @@ public class ActivitiesRealtimeListAccessV1Alpha2IT extends AbstractClientTestV1
   public void tearDown() {
     super.tearDown();
   }
-  
+
   @Test
   public void testWithGetRealtimeActivityWithLimit100() {
-//    not stable ???
-//    startSessionAs("demo", "gtn");
-//    RestIdentity restIdentity = identityService.getIdentity("organization", "demo");
-//    createActivities(200);
-//    
-//    RealtimeListAccess<RestActivity> activities = new ActivitiesRealtimeListAccessV1Alpha2(restIdentity, ActivityType.ACTIVITY_STREAM, null);
-//    assertThat("RealtimeListAccess<RestActivity> getOlder().size should have size = 100", 100, equalTo(activities.loadAsList(0, 100).size()));
-    
+    // not stable ???
+    // startSessionAs("demo", "gtn");
+    // RestIdentity restIdentity = identityService.getIdentity("organization",
+    // "demo");
+    // createActivities(200);
+    //
+    // RealtimeListAccess<RestActivity> activities = new
+    // ActivitiesRealtimeListAccessV1Alpha2(restIdentity,
+    // ActivityType.ACTIVITY_STREAM, null);
+    // assertThat("RealtimeListAccess<RestActivity> getOlder().size should have size = 100",
+    // 100, equalTo(activities.loadAsList(0, 100).size()));
+
   }
-  
+
   private List<RestActivity> createActivities(int numberOfActivity) throws SocialClientLibException {
     List<RestActivity> createdActivityList = new ArrayList<RestActivity>();
     for (int i = 0; i < numberOfActivity; i++) {

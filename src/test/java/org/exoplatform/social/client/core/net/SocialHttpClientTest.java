@@ -16,16 +16,14 @@
  */
 package org.exoplatform.social.client.core.net;
 
+import junit.framework.TestCase;
+
 import org.exoplatform.social.client.api.net.SocialHttpClient;
 import org.testng.annotations.Test;
 
-import junit.framework.TestCase;
-
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 29, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 29, 2011
  */
 public class SocialHttpClientTest extends TestCase {
 
@@ -40,7 +38,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link org.exoplatform.social.client.api.net.SocialHttpClient#setBasicAuthenticateToRequest()}.
+   * Tests
+   * {@link org.exoplatform.social.client.api.net.SocialHttpClient#setBasicAuthenticateToRequest()}
+   * .
    */
   @Test
   public void testSetBasicAuthenticateToRequest() {
@@ -48,7 +48,8 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link org.exoplatform.social.client.api.net.SocialHttpClient#getParams()}.
+   * Tests
+   * {@link org.exoplatform.social.client.api.net.SocialHttpClient#getParams()}.
    */
   @Test
   public void testGetParams() {
@@ -56,7 +57,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link org.exoplatform.social.client.api.net.SocialHttpClient#getConnectionManager()}.
+   * Tests
+   * {@link org.exoplatform.social.client.api.net.SocialHttpClient#getConnectionManager()}
+   * .
    */
   @Test
   public void testGetConnectionManager() {
@@ -64,7 +67,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest)}
+   * .
    */
   @Test
   public void testExecuteARequest() {
@@ -72,8 +77,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
-   * org.apache.http.protocol.HttpContext)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest, org.apache.http.protocol.HttpContext)}
+   * .
    */
   @Test
   public void testExecuteARequestWithContext() {
@@ -81,16 +87,19 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest)}
+   * .
    */
   @Test
   public void testExecuteARequestToATarget() {
-    
+
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest,
-   * org.apache.http.protocol.HttpContext)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest, org.apache.http.protocol.HttpContext)}
+   * .
    */
   @Test
   public void testExecuteARequestToATargetWithContext() {
@@ -98,8 +107,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
-   * org.apache.http.client.ResponseHandler)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest, org.apache.http.client.ResponseHandler)}
+   * .
    */
   @Test
   public void testExecuteARequestWithResponseHandler() {
@@ -107,8 +117,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
-   * org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.client.methods.HttpUriRequest, org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}
+   * .
    */
   @Test
   public void testExecuteARequestWithResponseHandlerAndContext() {
@@ -116,8 +127,9 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest,
-   * org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest, org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}
+   * .
    */
   @Test
   public void testExcecuteARequestToATargetWithResponseHandler() {
@@ -125,12 +137,13 @@ public class SocialHttpClientTest extends TestCase {
   }
 
   /**
-   * Tests {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest,
-   * org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}.
+   * Tests
+   * {@link SocialHttpClient#execute(org.apache.http.HttpHost, org.apache.http.HttpRequest, org.apache.http.client.ResponseHandler, org.apache.http.protocol.HttpContext)}
+   * .
    */
   @Test
   public void testExecuteARequestToATargetWithResponseHandlerAndContext() {
 
   }
-  
+
 }

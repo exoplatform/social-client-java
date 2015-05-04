@@ -19,25 +19,27 @@ package org.exoplatform.social.client.core.service;
 import org.exoplatform.social.client.api.service.QueryParams;
 
 /**
- * Implementation of {@link org.exoplatform.social.client.api.service.QueryParams}.
- *
+ * Implementation of
+ * {@link org.exoplatform.social.client.api.service.QueryParams}.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Oct 6, 2011
  * @since 1.0.0-alpha2
  */
 @SuppressWarnings("serial")
 public class QueryParamsImpl implements QueryParams {
- 
+
   private QueryParamOption queryParams[] = new QueryParamOption[0];
+
   /**
    * Locks object for change to listeners
    */
-  private final Object lock = new Object();
-  
+  private final Object     lock          = new Object();
+
   @Override
   public QueryParams append(QueryParamOption param) {
-    
-    synchronized(lock) {
+
+    synchronized (lock) {
       int n = -1;
       for (int i = 0; i < queryParams.length; i++) {
         if (queryParams[i].equals(param)) {
@@ -45,12 +47,12 @@ public class QueryParamsImpl implements QueryParams {
           break;
         }
       }
-      
-      //not found any QueryOptionParam in QueryParamOption[]
+
+      // not found any QueryOptionParam in QueryParamOption[]
       if (n < 0) {
         QueryParamOption results[] = new QueryParamOption[queryParams.length + 1];
         System.arraycopy(queryParams, 0, results, 0, queryParams.length);
-        //Add the Query Parameter to the new position.    
+        // Add the Query Parameter to the new position.
         results[queryParams.length] = param;
         queryParams = results;
       } else {
@@ -59,9 +61,7 @@ public class QueryParamsImpl implements QueryParams {
     }
     return this;
   }
-  
-  
-  
+
   @Override
   public QueryParams remove(QueryParamOption param) {
     synchronized (lock) {
@@ -72,12 +72,12 @@ public class QueryParamsImpl implements QueryParams {
           break;
         }
       }
-      //not found any QueryOptionParam in QueryParamOption[]
+      // not found any QueryOptionParam in QueryParamOption[]
       if (n < 0) {
         return this;
       }
 
-      //Execute to remove the Query Param
+      // Execute to remove the Query Param
       QueryParamOption results[] = new QueryParamOption[queryParams.length - 1];
       int j = 0;
       for (int i = 0; i < queryParams.length; i++) {
@@ -95,8 +95,8 @@ public class QueryParamsImpl implements QueryParams {
     StringBuffer sb = new StringBuffer();
     for (int i = 0; i < queryParams.length; i++) {
       sb.append(queryParams[i].getQueryName()).append("=").append(queryParams[i].getValue());
-      
-      if (i < queryParams.length -1)
+
+      if (i < queryParams.length - 1)
         sb.append("&");
     }
     return sb.toString();
@@ -106,7 +106,7 @@ public class QueryParamsImpl implements QueryParams {
   public void clear() {
     queryParams = new QueryParamOption[0];
   }
-  
+
   @Override
   public QueryParamOption get(QueryParamOption param) {
     synchronized (lock) {
@@ -117,13 +117,13 @@ public class QueryParamsImpl implements QueryParams {
           break;
         }
       }
-      //not found any QueryOptionParam in QueryParamOption[]
+      // not found any QueryOptionParam in QueryParamOption[]
       if (n < 0) {
         return null;
       }
-      
+
       return queryParams[n];
-    }//end lock
+    }// end lock
   }
-  
+
 }

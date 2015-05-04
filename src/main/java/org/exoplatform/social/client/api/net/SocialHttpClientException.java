@@ -19,32 +19,30 @@ package org.exoplatform.social.client.api.net;
 import java.io.IOException;
 
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
 @SuppressWarnings("serial")
 public class SocialHttpClientException extends IOException {
 
-
   /**
    * Constructor for SocialHttpClientException.
-   *
-   * @param message      the message of exception
-   * @param cause        the cause of exception
+   * 
+   * @param message the message of exception
+   * @param cause the cause of exception
    */
   public SocialHttpClientException(String message, Throwable cause) {
     super(message);
     initCause(cause);
   }
-  
+
   /**
    * Constructor for SocialHttpClientException.
+   * 
    * @param message the message of exception
    */
   public SocialHttpClientException(String message) {
     super(message);
   }
-  
+
 }

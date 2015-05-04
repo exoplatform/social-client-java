@@ -17,14 +17,11 @@
 package org.exoplatform.social.client.core.service;
 
 import org.exoplatform.social.client.api.SocialClientLibException;
-import org.exoplatform.social.client.api.auth.AccessDeniedException;
-import org.exoplatform.social.client.api.service.ServiceException;
 
 /**
  * Defines the MockModel class which provide to the UnitTestCase.
- *
+ * 
  * @author thanh_vucong
- *
  */
 public class MockService extends ServiceBase<MockModel, MockService> {
 
@@ -32,7 +29,7 @@ public class MockService extends ServiceBase<MockModel, MockService> {
   public MockModel create(MockModel newInstance) throws SocialClientLibException {
     // TODO Auto-generated method stub
     return null;
-    
+
   }
 
   @Override

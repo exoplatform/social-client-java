@@ -17,41 +17,38 @@
 package org.exoplatform.social.client.api.event;
 
 /**
- * A <code>PropertyChangeEvent</code> event gets delivered whenever a model 
- * changes a "bound" or "constrained" property.
- * A <code>PropertyChangeEvent</code> object is sent as an argument 
- * to the PropertyChangeListener handling.
- * 
- * Normally PropertyChangeEvent are accompanied by the name and the old
- * and new value of the changed property. If the new value is a primitive 
- * type (such as int or boolean) it must be wrapped as the corresponding 
- * java.lang.* Object type (such as Integer or Boolean)
+ * A <code>PropertyChangeEvent</code> event gets delivered whenever a model
+ * changes a "bound" or "constrained" property. A
+ * <code>PropertyChangeEvent</code> object is sent as an argument to the
+ * PropertyChangeListener handling. Normally PropertyChangeEvent are accompanied
+ * by the name and the old and new value of the changed property. If the new
+ * value is a primitive type (such as int or boolean) it must be wrapped as the
+ * corresponding java.lang.* Object type (such as Integer or Boolean)
  * 
  * @author thanh_vucong
- *
  */
 public class PropertyChangeEvent extends Event {
 
   /**
    * The object on which the Event initially occurred.
    */
-  protected transient Object  source;
-  
+  protected transient Object source;
+
   /**
-   * name of the property that changed. May be null, if not known. 
+   * name of the property that changed. May be null, if not known.
    */
-  private String propertyName;
-  
+  private String             propertyName;
+
   /**
    * New value for property. May be null if not known.
    */
-  private Object newValue;
-  
+  private Object             newValue;
+
   /**
    * Previous value for property. May be null if not known.
    */
-  private Object oldValue;
-  
+  private Object             oldValue;
+
   /**
    * Constructs a new <code>PropertyChangeEvent</code>
    * 
@@ -70,36 +67,37 @@ public class PropertyChangeEvent extends Event {
   /**
    * Gets the programmatic name of the property that was changed.
    * 
-   * @return The programmatic name of the property that was changed.
-   * May be null if multiple properties have changed.
+   * @return The programmatic name of the property that was changed. May be null
+   *         if multiple properties have changed.
    */
   public String getPropertyName() {
     return propertyName;
   }
-  
+
   /**
    * Gets the object on which the Event initially occurred.
+   * 
    * @return
    */
   public Object getSource() {
     return source;
   }
 
- 
   /**
-   * Gets the new value for the property, expressed as an Object.
-   * May be null if multiple properties have changed.
+   * Gets the new value for the property, expressed as an Object. May be null if
+   * multiple properties have changed.
    * 
-   * @return The new value for the property, expressed as an Object.
-   *  May be null if multiple properties have changed.
+   * @return The new value for the property, expressed as an Object. May be null
+   *         if multiple properties have changed.
    */
   public Object getNewValue() {
     return newValue;
   }
 
   /**
-   * Gets the old value for the property, expressed as an Object.
-   * May be null if multiple properties have changed.
+   * Gets the old value for the property, expressed as an Object. May be null if
+   * multiple properties have changed.
+   * 
    * @return
    */
   public Object getOldValue() {

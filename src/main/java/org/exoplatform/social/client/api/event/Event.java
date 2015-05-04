@@ -20,7 +20,6 @@ package org.exoplatform.social.client.api.event;
  * A tagging class that all event listeners must extend.
  * 
  * @author thanh_vucong
- *
  */
 public class Event {
 

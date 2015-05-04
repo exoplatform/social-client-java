@@ -16,16 +16,16 @@
  */
 package org.exoplatform.social.client.core.model;
 
-import org.exoplatform.social.client.api.model.RestActivityStream;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.exoplatform.social.client.api.model.RestActivityStream;
+import org.testng.annotations.Test;
+
 /**
  * Unit Test for {@link RestActivityStream}.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jun 29, 2011
  */
@@ -56,13 +56,13 @@ public class RestActivityStreamImplTest {
     assertThat("restActivityStream.getPrettyId() must return: " + prettyId, restActivityStream.getPrettyId(), equalTo(prettyId));
     assertThat("restActivityStream.getFullName() must return: " + fullName, restActivityStream.getFullName(), equalTo(fullName));
 
-    assertThat("restActivityStream.getFaviconUrl() must return: " + faviconUrl, restActivityStream.getFaviconUrl(),
-                equalTo(faviconUrl));
-    assertThat("restActivityStream.getPermaLink() must return: " + permaLink, restActivityStream.getPermaLink(),
-                equalTo(permaLink));
+    assertThat("restActivityStream.getFaviconUrl() must return: " + faviconUrl,
+               restActivityStream.getFaviconUrl(),
+               equalTo(faviconUrl));
+    assertThat("restActivityStream.getPermaLink() must return: " + permaLink,
+               restActivityStream.getPermaLink(),
+               equalTo(permaLink));
     assertThat("restActivityStream.getTitle() must return: " + title, restActivityStream.getTitle(), equalTo(title));
   }
-
-
 
 }

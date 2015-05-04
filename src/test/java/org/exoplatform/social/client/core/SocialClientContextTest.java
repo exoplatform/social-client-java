@@ -16,17 +16,18 @@
  */
 package org.exoplatform.social.client.core;
 
-import org.exoplatform.social.client.api.SocialClientContext;
-import org.exoplatform.social.client.api.UnsupportedRestVersionException;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.exoplatform.social.client.api.SocialClientContext;
+import org.exoplatform.social.client.api.UnsupportedRestVersionException;
+import org.testng.annotations.Test;
+
 /**
- * Unit Test for {@link org.exoplatform.social.client.api.SocialClientContext}'s implementation.
- *
+ * Unit Test for {@link org.exoplatform.social.client.api.SocialClientContext}'s
+ * implementation.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jun 28, 2011
  */
@@ -37,16 +38,17 @@ public class SocialClientContextTest {
     assertThat(SocialClientContext.getProtocol(), equalTo("http"));
     assertThat("SocialClientContext.getHost() must be null", SocialClientContext.getHost(), nullValue());
     assertThat("SocialClientContext.getPort() must return 0", SocialClientContext.getPort(), equalTo(0));
-    assertThat("SocialClientContext.getPortalContainerName() must be null", SocialClientContext.getPortalContainerName(),
+    assertThat("SocialClientContext.getPortalContainerName() must be null",
+               SocialClientContext.getPortalContainerName(),
                nullValue());
 
     assertThat("SocialClientContext.getRestContextName() must be null", SocialClientContext.getRestContextName(), nullValue());
-    assertThat("SocialClientContext.getRestVersion() must return: v1-alpha3", SocialClientContext.getRestVersion(),
-            equalTo("v1-alpha3"));
+    assertThat("SocialClientContext.getRestVersion() must return: v1-alpha3",
+               SocialClientContext.getRestVersion(),
+               equalTo("v1-alpha3"));
     assertThat("SocialClientContext.getUsername() must be null", SocialClientContext.getUsername(), nullValue());
     assertThat("SocialClientContext.getPassword() must be null", SocialClientContext.getPassword(), nullValue());
-    assertThat("SocialClientContext.isDeveloping() must return false", SocialClientContext.isDeveloping(),
-               equalTo(false));
+    assertThat("SocialClientContext.isDeveloping() must return false", SocialClientContext.isDeveloping(), equalTo(false));
   }
 
   @Test
@@ -63,7 +65,6 @@ public class SocialClientContextTest {
   public void shouldSupportV1Alpha3() {
     SocialClientContext.setRestVersion("v1-alpha3");
   }
-
 
   @Test(expectedExceptions = UnsupportedRestVersionException.class)
   public void shouldThrowExceptionIfNotSupported() {
@@ -88,8 +89,7 @@ public class SocialClientContextTest {
     assertThat(SocialClientContext.getRestVersion(), equalTo("v1-alpha3"));
     assertThat(SocialClientContext.getUsername(), equalTo("root"));
     assertThat(SocialClientContext.getPassword(), equalTo("gtn"));
-    assertThat("SocialClientContext.isDeveloping() must return true", SocialClientContext.isDeveloping(),
-              equalTo(true));
+    assertThat("SocialClientContext.isDeveloping() must return true", SocialClientContext.isDeveloping(), equalTo(true));
   }
 
 }

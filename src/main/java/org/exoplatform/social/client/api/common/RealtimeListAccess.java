@@ -16,13 +16,14 @@
  */
 package org.exoplatform.social.client.api.common;
 
-import org.exoplatform.social.client.api.SocialClientLibException;
-
 import java.util.List;
 
+import org.exoplatform.social.client.api.SocialClientLibException;
+
 /**
- * The extension of {@link ListAccess} for accessing list item with real-time support.
- *
+ * The extension of {@link ListAccess} for accessing list item with real-time
+ * support.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -30,7 +31,7 @@ public interface RealtimeListAccess<E> extends ListAccess<E> {
 
   /**
    * Checks if there is newer elements than the provided element.
-   *
+   * 
    * @param baseElement the based element
    * @return true if there is any newer element, otherwise, false
    */
@@ -38,34 +39,33 @@ public interface RealtimeListAccess<E> extends ListAccess<E> {
 
   /**
    * Gets the number of newer elements based on the provided element.
-   *
+   * 
    * @param baseElement the provided based element
    * @return number of newer elements if any
    */
   int getNumberOfNewer(E baseElement);
 
-
   /**
    * Loads newer elements based on the provided element.
-   *
+   * 
    * @param baseElement the based element
-   * @param limit       number of newer elements to load
+   * @param limit number of newer elements to load
    * @return an array of newer elements
    */
   E[] loadNewer(E baseElement, int limit) throws SocialClientLibException;
 
   /**
    * Loads newer elements based on the provided element.
-   *
+   * 
    * @param baseElement the based element
-   * @param limit       number of newer elements to load
+   * @param limit number of newer elements to load
    * @return a list of newer elements
    */
   List<E> loadNewerAsList(E baseElement, int limit) throws SocialClientLibException;
 
   /**
    * Checks if there is older elements than the provided element.
-   *
+   * 
    * @param baseElement the based element
    * @return true if there is any older element, otherwise, false
    */
@@ -73,7 +73,7 @@ public interface RealtimeListAccess<E> extends ListAccess<E> {
 
   /**
    * Gets the number of older elements based on the provided element.
-   *
+   * 
    * @param baseElement the provided element
    * @return number of older elements if any
    */
@@ -81,18 +81,18 @@ public interface RealtimeListAccess<E> extends ListAccess<E> {
 
   /**
    * Loads older elements based on the provided based element.
-   *
+   * 
    * @param baseElement the based element
-   * @param limit       number of older elements to load
+   * @param limit number of older elements to load
    * @return an array of older elements
    */
   E[] loadOlder(E baseElement, int limit) throws SocialClientLibException;
 
   /**
    * Loads older elements based on the provided based element.
-   *
+   * 
    * @param baseElement the based element
-   * @param limit       number of older elements to load
+   * @param limit number of older elements to load
    * @return a list of older elements
    */
   List<E> loadOlderAsList(E baseElement, int limit) throws SocialClientLibException;

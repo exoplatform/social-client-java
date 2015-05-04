@@ -10,16 +10,16 @@ public class RedirectException extends Exception {
   /**
    * Exception without any message.
    */
-  public RedirectException(){
+  public RedirectException() {
     super();
   }
 
   /**
    * Exception with message.
-   *
+   * 
    * @param newUrl the message
    */
-  public RedirectException(String newUrl){
+  public RedirectException(String newUrl) {
     super(newUrl);
     url = newUrl;
   }

@@ -16,17 +16,14 @@
  */
 package org.exoplatform.social.client.api.event;
 
-
 /**
  * General purpose exception that is thrown to indicate a lifecycle related
- * problem.  Such exceptions should generally be considered fatal to the
+ * problem. Such exceptions should generally be considered fatal to the
  * operation of the application containing this component.
  */
 public final class LifecycleException extends RuntimeException {
 
-
-  //------------------------------------------------------------ Constructors
-
+  // ------------------------------------------------------------ Constructors
 
   /**
    * Construct a new LifecycleException with no other information.
@@ -37,10 +34,9 @@ public final class LifecycleException extends RuntimeException {
 
   }
 
-
   /**
    * Construct a new LifecycleException for the specified message.
-   *
+   * 
    * @param message Message describing this exception
    */
   public LifecycleException(String message) {
@@ -49,10 +45,9 @@ public final class LifecycleException extends RuntimeException {
 
   }
 
-
   /**
    * Construct a new LifecycleException for the specified throwable.
-   *
+   * 
    * @param cause Throwable that caused this exception
    */
   public LifecycleException(Throwable cause) {
@@ -61,12 +56,10 @@ public final class LifecycleException extends RuntimeException {
 
   }
 
-
   /**
-   * Construct a new LifecycleException for the specified message
-   * and throwable.
-   *
-   * @param message   Message describing this exception
+   * Construct a new LifecycleException for the specified message and throwable.
+   * 
+   * @param message Message describing this exception
    * @param cause Throwable that caused this exception
    */
   public LifecycleException(String message, Throwable cause) {
@@ -77,24 +70,19 @@ public final class LifecycleException extends RuntimeException {
 
   }
 
-
-  //------------------------------------------------------ Instance Variables
-
+  // ------------------------------------------------------ Instance Variables
 
   /**
    * The error message passed to our constructor (if any)
    */
-  protected String message = null;
-
+  protected String    message = null;
 
   /**
    * The underlying exception or error passed to our constructor (if any)
    */
-  protected Throwable cause = null;
+  protected Throwable cause   = null;
 
-
-  //---------------------------------------------------------- Public Methods
-
+  // ---------------------------------------------------------- Public Methods
 
   /**
    * Returns the message associated with this exception, if any.
@@ -105,7 +93,6 @@ public final class LifecycleException extends RuntimeException {
 
   }
 
-
   /**
    * Returns the throwable that caused this exception, if any.
    */
@@ -114,7 +101,6 @@ public final class LifecycleException extends RuntimeException {
     return (cause);
 
   }
-
 
   /**
    * Returns a formatted string that describes this exception.
@@ -134,6 +120,5 @@ public final class LifecycleException extends RuntimeException {
     return (sb.toString());
 
   }
-
 
 }

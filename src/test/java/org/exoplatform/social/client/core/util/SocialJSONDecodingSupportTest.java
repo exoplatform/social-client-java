@@ -16,6 +16,8 @@
  */
 package org.exoplatform.social.client.core.util;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Map;
 
 import org.exoplatform.social.client.api.model.RestActivity;
@@ -27,34 +29,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-
-
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
 public class SocialJSONDecodingSupportTest {
 
   @BeforeMethod
   public void setUp() throws Exception {
-    
+
   }
-  
+
   @AfterMethod
   public void tearDown() throws Exception {
-    
+
   }
-  
+
   @Test
   public void testJSONParserWithClassType() throws Exception {
     String jsonActivity = "{\"numberOfComments\":1,\"identityId\":\"d5039b437f0001010011fd153a4fcbd8\",\"liked\":true,}";
     RestActivity model = SocialJSONDecodingSupport.parser(RestActivity.class, jsonActivity);
     assertEquals(model.getIdentityId(), "d5039b437f0001010011fd153a4fcbd8");
   }
-  
+
   @Test
   public void testJSONParser() throws Exception {
     String jsonActivity = "{\"numberOfComments\":1,\"identityId\":\"d5039b437f0001010011fd153a4fcbd8\",\"liked\":true,}";
@@ -62,33 +59,24 @@ public class SocialJSONDecodingSupportTest {
     assertEquals(modelMap.get("identityId"), "d5039b437f0001010011fd153a4fcbd8");
   }
 
-
   @Test
   public void testJsonArrayParser() throws Exception {
-    String jsonActivity = "[" +
-    		                      "{\"numberOfComments\":1,\"identityId\":\"d5039b437f0001010011fd153a4fcbd8\",\"liked\":true,}," +
-    		                      "{\"numberOfComments\":2,\"identityId\":\"d5039b437f0001010011fd153a4fcba8\",\"liked\":false,}" +
-    		                   "]";
+    String jsonActivity = "[" + "{\"numberOfComments\":1,\"identityId\":\"d5039b437f0001010011fd153a4fcbd8\",\"liked\":true,},"
+        + "{\"numberOfComments\":2,\"identityId\":\"d5039b437f0001010011fd153a4fcba8\",\"liked\":false,}" + "]";
     RestActivity model1 = SocialJSONDecodingSupport.JSONArrayObjectParser(RestActivity.class, jsonActivity).get(0);
     RestActivity model2 = SocialJSONDecodingSupport.JSONArrayObjectParser(RestActivity.class, jsonActivity).get(1);
     assertEquals(model1.getIdentityId(), "d5039b437f0001010011fd153a4fcbd8");
     assertEquals(model2.getIdentityId(), "d5039b437f0001010011fd153a4fcba8");
-    
-    
-    String jsonActivity1 = "{\"activities\":[" +
-    		                              "{" +
-    		                              "\"appId\":null,\"identityId\":\"f845f6ed7f000101003ed4d98a09beb3\"," +
-    		                              "\"totalNumberOfComments\":0,\"liked\":false,\"templateParams\":{}," +
-    		                              "\"postedTime\":1309839511830,\"type\":\"DEFAULT_ACTIVITY\"," +
-    		                              "\"posterIdentity\":null,\"activityStream\":null," +
-    		                              "\"id\":\"f884d11a7f000101000230e5c0e8a602\"," +
-    		                              "\"title\":\"hello\",\"priority\":null," +
-    		                              "\"createdAt\":\"Tue Jul 5 11:18:31 +0700 2011\"," +
-    		                              "\"likedByIdentities\":null,\"titleId\":null,\"comments\":null}" +
-    		                   "]}";
+
+    String jsonActivity1 = "{\"activities\":[" + "{" + "\"appId\":null,\"identityId\":\"f845f6ed7f000101003ed4d98a09beb3\","
+        + "\"totalNumberOfComments\":0,\"liked\":false,\"templateParams\":{},"
+        + "\"postedTime\":1309839511830,\"type\":\"DEFAULT_ACTIVITY\"," + "\"posterIdentity\":null,\"activityStream\":null,"
+        + "\"id\":\"f884d11a7f000101000230e5c0e8a602\"," + "\"title\":\"hello\",\"priority\":null,"
+        + "\"createdAt\":\"Tue Jul 5 11:18:31 +0700 2011\"," + "\"likedByIdentities\":null,\"titleId\":null,\"comments\":null}"
+        + "]}";
 
     JSONObject jsonObject = (JSONObject) JSONValue.parse(jsonActivity1);
-    JSONArray jsonArray =  (JSONArray)jsonObject.get("activities");
+    JSONArray jsonArray = (JSONArray) jsonObject.get("activities");
     RestActivity model3 = SocialJSONDecodingSupport.JSONArrayObjectParser(RestActivity.class, jsonArray.toJSONString()).get(0);
     assertEquals(model3.getIdentityId(), "f845f6ed7f000101003ed4d98a09beb3");
   }

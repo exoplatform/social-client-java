@@ -17,14 +17,11 @@
 package org.exoplatform.social.client.core;
 
 import org.exoplatform.social.client.api.ClientServiceFactory;
-import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.service.ActivityService;
 import org.exoplatform.social.client.api.service.IdentityService;
-import org.exoplatform.social.client.api.service.SpaceService;
 import org.exoplatform.social.client.api.service.VersionService;
 import org.exoplatform.social.client.core.service.ActivityServiceImplV1Alpha3;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha3;
-import org.exoplatform.social.client.core.service.SpaceServiceImplV1Alpha3;
 import org.exoplatform.social.client.core.service.VersionServiceImpl;
 
 /**
@@ -38,56 +35,43 @@ import org.exoplatform.social.client.core.service.VersionServiceImpl;
  */
 public class ClientServiceFactoryImplV1Alpha3 implements ClientServiceFactory {
 
-    private VersionService  versionService;
+  private VersionService  versionService;
 
-    private ActivityService activityService;
+  private ActivityService activityService;
 
-    private IdentityService identityService;
+  private IdentityService identityService;
 
-    private SpaceService    spaceService;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public VersionService createVersionService() {
-        if (versionService == null) {
-            versionService = new VersionServiceImpl();
-        }
-        return versionService;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public VersionService createVersionService() {
+    if (versionService == null) {
+      versionService = new VersionServiceImpl();
     }
+    return versionService;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ActivityService createActivityService() {
-        if (activityService == null) {
-            activityService = new ActivityServiceImplV1Alpha3();
-        }
-        return activityService;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ActivityService createActivityService() {
+    if (activityService == null) {
+      activityService = new ActivityServiceImplV1Alpha3();
     }
+    return activityService;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public IdentityService createIdentityService() {
-        if (identityService == null) {
-            identityService = new IdentityServiceImplV1Alpha3();
-        }
-        return identityService;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IdentityService createIdentityService() {
+    if (identityService == null) {
+      identityService = new IdentityServiceImplV1Alpha3();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SpaceService createSpaceService() throws SocialClientLibException {
-        if (spaceService == null) {
-            spaceService = new SpaceServiceImplV1Alpha3();
-        }
-        return spaceService;
-    }
+    return identityService;
+  }
 
 }

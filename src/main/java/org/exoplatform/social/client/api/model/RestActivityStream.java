@@ -18,7 +18,7 @@ package org.exoplatform.social.client.api.model;
 
 /**
  * Activity Stream model.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jun 29, 2011
  */
@@ -37,7 +37,7 @@ public class RestActivityStream extends Model {
     PRETTY_ID("prettyId"),
     /**
      * the json field for fullName.
-     */    
+     */
     FULL_NAME("fullName"),
     /**
      * the json field for faviconUrl.
@@ -59,7 +59,7 @@ public class RestActivityStream extends Model {
 
     /**
      * create a field base on the a json element.
-     *
+     * 
      * @param jsonString the name of the element
      */
     private Field(String jsonString) {
@@ -68,7 +68,7 @@ public class RestActivityStream extends Model {
 
     /**
      * emit the field as a json element.
-     *
+     * 
      * @return the field name
      */
     @Override
@@ -83,15 +83,15 @@ public class RestActivityStream extends Model {
   public RestActivityStream() {
 
   }
-  
+
   /**
    * Constructor to set values.
-   *
-   * @param type       the type
-   * @param prettyId   the pretty id
+   * 
+   * @param type the type
+   * @param prettyId the pretty id
    * @param faviconUrl the favicon url
-   * @param title      the title
-   * @param permaLink  the permalink
+   * @param title the title
+   * @param permaLink the permalink
    */
   public RestActivityStream(String type, String prettyId, String fullName, String faviconUrl, String title, String permaLink) {
     setType(type);
@@ -101,10 +101,10 @@ public class RestActivityStream extends Model {
     setTitle(title);
     setPermaLink(permaLink);
   }
-  
+
   /**
    * Gets the type of activity stream.
-   *
+   * 
    * @return the type
    */
   public String getType() {
@@ -113,7 +113,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the type of activity stream.
-   *
+   * 
    * @param type the type
    */
   public void setType(String type) {
@@ -122,7 +122,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Gets the pretty id from the activity stream.
-   *
+   * 
    * @return the pretty id
    */
   public String getPrettyId() {
@@ -131,18 +131,18 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the pretty id for the activity stream.
-   *
+   * 
    * @param prettyId the pretty id
    */
   public void setPrettyId(String prettyId) {
     setField(Field.PRETTY_ID.toString(), prettyId);
   }
-  
+
   /**
    * Gets the full name of activity stream owner.
-   *
+   * 
    * @return the fullName of activity stream owner.
-   * @since  1.0.0-alpha3 (Rest v1-alpha3)
+   * @since 1.0.0-alpha3 (Rest v1-alpha3)
    */
   public String getFullName() {
     return getFieldAsString(Field.FULL_NAME.toString());
@@ -150,17 +150,17 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the full name for the activity stream owner.
-   *
+   * 
    * @param fullName the full name
    * @since 1.0.0-alpha3 (Rest v1-alpha3)
    */
   public void setFullName(String fullName) {
     setField(Field.FULL_NAME.toString(), fullName);
   }
-  
+
   /**
    * Gets the favicon url of the activity stream.
-   *
+   * 
    * @return the favicon url
    */
   public String getFaviconUrl() {
@@ -169,7 +169,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the favicon url for the activity stream.
-   *
+   * 
    * @param faviconUrl the favicon url
    */
   public void setFaviconUrl(String faviconUrl) {
@@ -178,7 +178,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Gets activity stream's title.
-   *
+   * 
    * @return the activity stream's title
    */
   public String getTitle() {
@@ -187,7 +187,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the activity stream title.
-   *
+   * 
    * @param title the activity stream's title
    */
   public void setTitle(String title) {
@@ -196,7 +196,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Gets the permanent link for activity stream.
-   *
+   * 
    * @return the permanent link
    */
   public String getPermaLink() {
@@ -205,7 +205,7 @@ public class RestActivityStream extends Model {
 
   /**
    * Sets the permanent link for activity stream.
-   *
+   * 
    * @param permaLink the permanent link
    */
   public void setPermaLink(String permaLink) {

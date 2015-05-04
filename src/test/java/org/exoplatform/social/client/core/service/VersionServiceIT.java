@@ -16,21 +16,18 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
+
 import org.exoplatform.social.client.core.AbstractClientTest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.core.IsNull.notNullValue;
-
-
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
 public class VersionServiceIT extends AbstractClientTest {
 
@@ -39,7 +36,6 @@ public class VersionServiceIT extends AbstractClientTest {
     super.setUp();
   }
 
-
   @AfterMethod
   public void tearDown() {
     super.tearDown();
@@ -47,7 +43,7 @@ public class VersionServiceIT extends AbstractClientTest {
 
   @Override
   protected void setRestVersion() {
-    //do nothing
+    // do nothing
   }
 
   @Test
@@ -55,11 +51,11 @@ public class VersionServiceIT extends AbstractClientTest {
     String latestVersion = versionService.getLatest();
     assertThat("latestVersion must not be null", latestVersion, notNullValue());
   }
-  
+
   @Test
   public void testGetSupportedVersion() throws Exception {
     String[] versions = versionService.getSupported();
     assertThat("versions.length must be greater than 0", versions.length > 0, equalTo(true));
   }
-  
+
 }

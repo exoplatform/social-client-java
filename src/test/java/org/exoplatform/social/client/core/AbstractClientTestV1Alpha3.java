@@ -16,17 +16,15 @@
  */
 package org.exoplatform.social.client.core;
 
-
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.model.RestIdentity;
 
 /**
- * The base abstract class for integration tests of of Social Rest APIs v1-alpha3.
- *
- * It's required for all tests to check {@link #canRunTest()} to make sure if the rest version is not supported
- * by server, just pass.
- *
+ * The base abstract class for integration tests of of Social Rest APIs
+ * v1-alpha3. It's required for all tests to check {@link #canRunTest()} to make
+ * sure if the rest version is not supported by server, just pass.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since 1.0.0-alpha2
  */
@@ -44,7 +42,7 @@ public abstract class AbstractClientTestV1Alpha3 extends AbstractClientTest {
 
   /**
    * Supports to gets Demo's identity.
-   *
+   * 
    * @return Demo's Identity.
    */
   protected RestIdentity getRootIdentity() throws SocialClientLibException {

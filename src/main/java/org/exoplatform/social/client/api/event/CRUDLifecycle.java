@@ -16,21 +16,19 @@
  */
 package org.exoplatform.social.client.api.event;
 
-
-
 /**
- * Common interface for component CRUD life cycle methods.
- * In order to provide a consistent event management and broadcasting to create, update and delete the model.
+ * Common interface for component CRUD life cycle methods. In order to provide a
+ * consistent event management and broadcasting to create, update and delete the
+ * model.
  * 
  * @author thanh_vucong
- *
  */
 public interface CRUDLifecycle<M> {
 
   /**
    * The CRUDLifecycleEvent type for the "component create" event.
    */
-  public static final String CREATE_EVENT = "create";
+  public static final String CREATE_EVENT        = "create";
 
   /**
    * The CRUDLifecycleEvent type for the "component before create"
@@ -40,56 +38,58 @@ public interface CRUDLifecycle<M> {
   /**
    * The CRUDLifecycleEvent type for the "component after create"
    */
-  public static final String AFTER_CREATE_EVENT = "after_create";
+  public static final String AFTER_CREATE_EVENT  = "after_create";
 
   /**
    * The CRUDLifecycleEvent type for the "component update" event.
    */
-  public static final String UPDATE_EVENT = "update";
+  public static final String UPDATE_EVENT        = "update";
 
   /**
    * The CRUDLifecycleEvent type for the "component before update"
    */
   public static final String BEFORE_UPDATE_EVENT = "before_update";
+
   /**
    * The CRUDLifecycleEvent type for the "component after update"
    */
-  public static final String AFTER_UPDATE_EVENT = "after_update";
+  public static final String AFTER_UPDATE_EVENT  = "after_update";
 
   /**
    * The CRUDLifecycleEvent type for the "component delete" event.
    */
-  public static final String DELETE_EVENT = "delete";
+  public static final String DELETE_EVENT        = "delete";
 
   /**
    * The CRUDLifecycleEvent type for the "component before delete"
    */
   public static final String BEFORE_DELETE_EVENT = "before_delete";
+
   /**
    * The CRUDLifecycleEvent type for the "component after delete"
    */
-  public static final String AFTER_DELETE_EVENT = "after_delete";
+  public static final String AFTER_DELETE_EVENT  = "after_delete";
 
   /**
    * Gets the lifecycle listeners associated with this lifecycle. If this
    * Lifecycle has no listeners registered, a zero-length array is returned.
-   *
+   * 
    * @return array of listeners registered
    */
   public CRUDLifecycleListener<M>[] findCRUDLifecycleListeners();
-  
+
   /**
    * Removes a CRUDLifecycleEvent listener from this component.
-   *
+   * 
    * @param listener The listener to be removed
    */
   public void removeCRUDLifecycleListener(CRUDLifecycleListener<M> listener);
-  
+
   /**
    * Adds a CRUDLifecycleEvent listener to this component.
-   *
+   * 
    * @param listener The listener to to be added
    */
   public void addCRUDLifecycleListener(CRUDLifecycleListener<M> listener);
-  
+
 }

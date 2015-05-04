@@ -21,59 +21,58 @@ import org.exoplatform.social.client.api.event.CRUDLifecycleEvent;
 import org.exoplatform.social.client.api.event.CRUDLifecycleListener;
 
 /**
- * 
- *  This is a utility class that can be used by models that assist 
- *  in firing CRUDLifecycleEvent notifications to registered CRUDLifecycleListeners 
- *  and delegate various work to it
+ * This is a utility class that can be used by models that assist in firing
+ * CRUDLifecycleEvent notifications to registered CRUDLifecycleListeners and
+ * delegate various work to it
  * 
  * @author thanh_vucong
- *
  */
 public class CRUDLifecycleSupport<M> {
   /**
    * The source component for crud lifecycle events that we will broadcast.
    */
-  private CRUDLifecycle<M> crudlifecycle = null;
-  
+  private CRUDLifecycle<M>         crudlifecycle = null;
+
   /**
    * The set of registered LifecycleListeners for event notifications.
    */
-  private CRUDLifecycleListener<M> listeners[] = new CRUDLifecycleListener[0];
-  
+  private CRUDLifecycleListener<M> listeners[]   = new CRUDLifecycleListener[0];
+
   /**
    * Lock object for change to listeners
    */
-  private final Object listenersLock = new Object();
-  
+  private final Object             listenersLock = new Object();
+
   /**
-   * Constructs a new LifecycleHelper object associated with the specified Lifecycle component.
+   * Constructs a new LifecycleHelper object associated with the specified
+   * Lifecycle component.
+   * 
    * @param crudlifecycle
    */
   public CRUDLifecycleSupport(CRUDLifecycle<M> crudlifecycle) {
     this.crudlifecycle = crudlifecycle;
   }
-  
-  
-  
+
   /**
    * Add a Lifecycle event listener to this component
+   * 
    * @param listener The listener is added.
    */
   public void addCRUDLifecycleListener(CRUDLifecycleListener<M> listener) {
-    
-    synchronized(listenersLock) {
+
+    synchronized (listenersLock) {
       CRUDLifecycleListener<M> results[] = new CRUDLifecycleListener[listeners.length + 1];
       System.arraycopy(listeners, 0, results, 0, listeners.length);
-      //Add the LifecycleListener to the new position.    
+      // Add the LifecycleListener to the new position.
       results[listeners.length] = listener;
       listeners = results;
     }
   }
-  
+
   /**
-   * Notify all CRUDLifecycle event listeners that a particular event has 
-   * occurred for this Container. The default implementation performs 
-   * this notification synchronously using the calling thread.
+   * Notify all CRUDLifecycle event listeners that a particular event has
+   * occurred for this Container. The default implementation performs this
+   * notification synchronously using the calling thread.
    * 
    * @param type Event type
    * @param data Event data
@@ -85,9 +84,10 @@ public class CRUDLifecycleSupport<M> {
       interested[i].broadcast(event);
     }
   }
-  
+
   /**
    * Remove a CRUDLifecycle event listener which was registered to component
+   * 
    * @param listener The listener will be removed.
    */
   public void removeCRUDLifecycleListener(CRUDLifecycleListener<M> listener) {
@@ -99,13 +99,12 @@ public class CRUDLifecycleSupport<M> {
           break;
         }
       }
-      //not found any listener in Listeners
+      // not found any listener in Listeners
       if (n < 0) {
         return;
       }
 
-
-      //Execute to remove the listener
+      // Execute to remove the listener
       CRUDLifecycleListener<M> results[] = new CRUDLifecycleListener[listeners.length - 1];
       int j = 0;
       for (int i = 0; i < listeners.length; i++) {
@@ -118,11 +117,12 @@ public class CRUDLifecycleSupport<M> {
   }
 
   /**
-   * Get the crud lifecycle listeners associated with this lifecycle. If this 
-   * crud Lifecycle has no listeners registered, a zero-length array is returned.
+   * Get the crud lifecycle listeners associated with this lifecycle. If this
+   * crud Lifecycle has no listeners registered, a zero-length array is
+   * returned.
    */
   public CRUDLifecycleListener<M>[] findCRUDLifecycleListeners() {
-      return listeners;
+    return listeners;
   }
 
 }

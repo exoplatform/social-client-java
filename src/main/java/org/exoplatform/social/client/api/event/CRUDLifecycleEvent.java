@@ -16,14 +16,11 @@
  */
 package org.exoplatform.social.client.api.event;
 
-
 /**
- * 
  * General event for notifying listeners of significant changes on a service
  * that implements the CRUDLifecycle interface.
- *
+ * 
  * @author thanh_vucong
- *
  * @param <M> The object which implements Model interface
  */
 public final class CRUDLifecycleEvent<M> extends Event {
@@ -31,16 +28,18 @@ public final class CRUDLifecycleEvent<M> extends Event {
   /**
    * The event type this instance represents.
    */
-  private String type = null;
+  private String           type   = null;
+
   /**
    * The event data associated with this event.
    */
-  private M data = null;
+  private M                data   = null;
+
   /**
    * The CRUDLifecycle on which this event occurred.
    */
   private CRUDLifecycle<M> source = null;
-  
+
   /**
    * Constructs a new CRUDLifecycleEvent with the specified parameters.
    * 
@@ -50,7 +49,7 @@ public final class CRUDLifecycleEvent<M> extends Event {
   public CRUDLifecycleEvent(CRUDLifecycle<M> source, String type) {
     this(source, type, null);
   }
-  
+
   /**
    * Constructs a new LifecycleEvent with the specified parameters.
    * 
@@ -63,10 +62,10 @@ public final class CRUDLifecycleEvent<M> extends Event {
     this.type = type;
     this.data = data;
   }
-  
+
   /**
    * Returns the event type of this event.
-   *
+   * 
    * @return the event type of this event
    */
   public String getType() {
@@ -75,7 +74,7 @@ public final class CRUDLifecycleEvent<M> extends Event {
 
   /**
    * Returns the event data of this event.
-   *
+   * 
    * @return the event data
    */
   public M getData() {
@@ -84,7 +83,7 @@ public final class CRUDLifecycleEvent<M> extends Event {
 
   /**
    * Returns the CRUDLifecycle on which this event occurred.
-   *
+   * 
    * @return the source of this event
    */
   public CRUDLifecycle<M> getSource() {

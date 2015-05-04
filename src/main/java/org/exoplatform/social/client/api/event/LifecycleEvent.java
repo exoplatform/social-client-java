@@ -16,39 +16,39 @@
  */
 package org.exoplatform.social.client.api.event;
 
-
 /**
  * General event for notifying listeners of significant changes on a component
  * that implements the Lifecycle interface.
  * 
  * @author thanh_vucong
- *
  */
 public class LifecycleEvent<M, L> extends Event {
 
   /**
    * The event type this instance represents.
    */
-  private String type = null;
+  private String          type   = null;
+
   /**
    * The event data associated with this event.
    */
-  private L data = null;
+  private L               data   = null;
+
   /**
    * The Lifecycle on which this event occurred.
    */
-  private Lifecycle<M,L> source = null;
-  
+  private Lifecycle<M, L> source = null;
+
   /**
    * Construct a new LifecycleEvent with the specified parameters.
    * 
    * @param source Component on which this event occurred
    * @param type Event type (required)
    */
-  public LifecycleEvent(Lifecycle<M,L> source, String type) {
-   this(source, type, null);
+  public LifecycleEvent(Lifecycle<M, L> source, String type) {
+    this(source, type, null);
   }
-  
+
   /**
    * Construct a new LifecycleEvent with the specified parameters.
    * 
@@ -56,14 +56,15 @@ public class LifecycleEvent<M, L> extends Event {
    * @param type Event type (required)
    * @param data Event data (if any)
    */
-  public LifecycleEvent(Lifecycle<M,L> source, String type, L data) {
+  public LifecycleEvent(Lifecycle<M, L> source, String type, L data) {
     this.source = source;
     this.type = type;
     this.data = data;
   }
-  
+
   /**
    * Return the event type of this event.
+   * 
    * @return
    */
   public String getType() {
@@ -72,6 +73,7 @@ public class LifecycleEvent<M, L> extends Event {
 
   /**
    * Return the event data of this event.
+   * 
    * @return
    */
   public L getData() {
@@ -80,10 +82,11 @@ public class LifecycleEvent<M, L> extends Event {
 
   /**
    * Return the Lifecycle on which this event occurred.
+   * 
    * @return
    */
-  public Lifecycle<M,L> getSource() {
+  public Lifecycle<M, L> getSource() {
     return source;
   }
-  
+
 }

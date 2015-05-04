@@ -16,18 +16,18 @@
  */
 package org.exoplatform.social.client.core.model;
 
-import org.exoplatform.social.client.api.model.RestComment;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 
+import org.exoplatform.social.client.api.model.RestComment;
+import org.testng.annotations.Test;
+
 /**
  * Unit Test for {@link RestComment}.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
- * @since  May 26, 2011
+ * @since May 26, 2011
  */
 public class CommentImplTest {
 
@@ -49,11 +49,11 @@ public class CommentImplTest {
 
   @Test
   public void shouldGetActivity() {
-    //TODO Complete this
+    // TODO Complete this
   }
 
   @Test
   public void shouldGetIdentity() {
-    //TODO Complete this
+    // TODO Complete this
   }
 }

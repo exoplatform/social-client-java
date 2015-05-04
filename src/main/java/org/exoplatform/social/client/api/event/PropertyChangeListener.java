@@ -17,19 +17,19 @@
 package org.exoplatform.social.client.api.event;
 
 /**
- * The <code>PropertyChangeListener</code> is fired whenever a bean changes a "bound"
- * property. You can register a PropertyChangeListerner with a source bean to handle when property updates.
+ * The <code>PropertyChangeListener</code> is fired whenever a bean changes a
+ * "bound" property. You can register a PropertyChangeListerner with a source
+ * bean to handle when property updates.
  * 
  * @author thanh_vucong
- *
  */
 public interface PropertyChangeListener {
 
   /**
    * Gets called when a bound property is changed.
-   *
-   * @param event A <code>PropertyChangeEvent</code> object describing 
-   * the event source and the property that has changed.
+   * 
+   * @param event A <code>PropertyChangeEvent</code> object describing the event
+   *          source and the property that has changed.
    */
   public void propertyChange(PropertyChangeEvent event);
 }

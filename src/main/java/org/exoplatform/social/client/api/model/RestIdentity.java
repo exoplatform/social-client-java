@@ -21,7 +21,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  * eXo Social Identity.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -29,11 +29,9 @@ public class RestIdentity extends Model {
 
   /**
    * The fields that represent the Identity object in json form.
-   *
    * <p>
    * All of the fields that comments can have.
    * </p>
-   *
    */
   public static enum Field {
     /** the json field for identity id. */
@@ -42,7 +40,7 @@ public class RestIdentity extends Model {
     PROVIDER_ID("providerId"),
     /** the json field for activityId. */
     REMOTE_ID("remoteId"),
-    /**the json profile object*/
+    /** the json profile object */
     PROFILE("profile");
 
     /**
@@ -52,7 +50,7 @@ public class RestIdentity extends Model {
 
     /**
      * create a field base on the a json element.
-     *
+     * 
      * @param jsonString the name of the element
      */
     private Field(String jsonString) {
@@ -61,7 +59,7 @@ public class RestIdentity extends Model {
 
     /**
      * emit the field as a json element.
-     *
+     * 
      * @return the field name
      */
     @Override
@@ -84,10 +82,10 @@ public class RestIdentity extends Model {
 
   /**
    * Constructor.
-   *
-   * @param id         the identity id
+   * 
+   * @param id the identity id
    * @param providerId the identity provider id
-   * @param remoteId   the remote id
+   * @param remoteId the remote id
    */
   public RestIdentity(String id, String providerId, String remoteId, RestProfile restProfile) {
     setId(id);
@@ -95,10 +93,10 @@ public class RestIdentity extends Model {
     setRemoteId(remoteId);
     setProfile(restProfile);
   }
-  
+
   /**
    * Gets the identity id.
-   *
+   * 
    * @return the identity id
    */
   public String getId() {
@@ -107,7 +105,7 @@ public class RestIdentity extends Model {
 
   /**
    * Sets the identity id.
-   *
+   * 
    * @param id the identity id
    */
   public void setId(String id) {
@@ -116,7 +114,7 @@ public class RestIdentity extends Model {
 
   /**
    * Gets identity provider id.
-   *
+   * 
    * @return the provider id
    */
   public String getProviderId() {
@@ -125,7 +123,7 @@ public class RestIdentity extends Model {
 
   /**
    * Sets identity provider id.
-   *
+   * 
    * @param providerId the provider id
    */
   public void setProviderId(String providerId) {
@@ -134,6 +132,7 @@ public class RestIdentity extends Model {
 
   /**
    * Gets the remote identity id.
+   * 
    * @return the remote id
    */
   public String getRemoteId() {
@@ -142,7 +141,7 @@ public class RestIdentity extends Model {
 
   /**
    * Sets the remote identity id.
-   *
+   * 
    * @param remoteId the remote id
    */
   public void setRemoteId(String remoteId) {
@@ -151,7 +150,7 @@ public class RestIdentity extends Model {
 
   /**
    * Gets the profile associated with this identity.
-   *
+   * 
    * @return the associated profile.
    */
   public RestProfile getProfile() {
@@ -165,7 +164,7 @@ public class RestIdentity extends Model {
 
   /**
    * Sets the profile associated with this identity.
-   *
+   * 
    * @param restProfile the associated profile.
    */
   public void setProfile(RestProfile restProfile) {

@@ -17,11 +17,12 @@
 package org.exoplatform.social.client.api;
 
 /**
- * Exception for the case that the client wants to use the rest version is not supported.
- *
+ * Exception for the case that the client wants to use the rest version is not
+ * supported.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
- * @since  1.0.0-alpha2
- * @since  Oct 4, 2011
+ * @since 1.0.0-alpha2
+ * @since Oct 4, 2011
  */
 public class UnsupportedRestVersionException extends IllegalArgumentException {
 
@@ -34,7 +35,7 @@ public class UnsupportedRestVersionException extends IllegalArgumentException {
 
   /**
    * Constructor with message.
-   *
+   * 
    * @param msg the message
    */
   public UnsupportedRestVersionException(String msg) {

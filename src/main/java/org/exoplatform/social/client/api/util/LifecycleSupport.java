@@ -21,76 +21,74 @@ import org.exoplatform.social.client.api.event.LifecycleEvent;
 import org.exoplatform.social.client.api.event.LifecycleListener;
 
 /**
- * 
- * This is a utility class that can be used by models that assist
- * in firing LifecycleEvent notifications to registered LifecycleListeners
- * and delegate various work to it
+ * This is a utility class that can be used by models that assist in firing
+ * LifecycleEvent notifications to registered LifecycleListeners and delegate
+ * various work to it
  * 
  * @author thanh_vucong
- *
  */
 public final class LifecycleSupport<M, L> {
 
   /**
    * The source component for lifecycle events that we will broadcast.
    */
-  private Lifecycle<M,L> lifecycle = null;
-  
+  private Lifecycle<M, L>         lifecycle     = null;
+
   /**
    * The set of registered LifecycleListeners for event notifications.
    */
-  private LifecycleListener<M,L> listeners[] = new LifecycleListener[0];
-  
+  private LifecycleListener<M, L> listeners[]   = new LifecycleListener[0];
+
   /**
    * Locks object for change to listeners
    */
-  private final Object listenersLock = new Object();
-  
+  private final Object            listenersLock = new Object();
+
   /**
-   * Constructs a new LifecycleHelper object associated with the specified Lifecycle component.
+   * Constructs a new LifecycleHelper object associated with the specified
+   * Lifecycle component.
+   * 
    * @param lifecycle
    */
-  public LifecycleSupport(Lifecycle<M,L> lifecycle) {
+  public LifecycleSupport(Lifecycle<M, L> lifecycle) {
     this.lifecycle = lifecycle;
   }
-  
-  
-  
+
   /**
    * Adds a Lifecycle event listener to this component.
-   *
+   * 
    * @param listener The listener is added.
    */
-  public void addLifecycleListener(LifecycleListener<M,L> listener) {
-    
-    synchronized(listenersLock) {
-      LifecycleListener<M,L> results[] = new LifecycleListener[listeners.length + 1];
+  public void addLifecycleListener(LifecycleListener<M, L> listener) {
+
+    synchronized (listenersLock) {
+      LifecycleListener<M, L> results[] = new LifecycleListener[listeners.length + 1];
       System.arraycopy(listeners, 0, results, 0, listeners.length);
-      //Add the LifecycleListener to the new position.    
+      // Add the LifecycleListener to the new position.
       results[listeners.length] = listener;
       listeners = results;
     }
   }
-  
+
   /**
-   * Notifies all Lifecycle event listeners that a particular event has
-   * occurred for this Container. The default implementation performs 
-   * this notification synchronously using the calling thread.
+   * Notifies all Lifecycle event listeners that a particular event has occurred
+   * for this Container. The default implementation performs this notification
+   * synchronously using the calling thread.
    * 
    * @param type Event type
    * @param data Event data
    */
   public void broadcastEvent(String type, L data) {
-    LifecycleEvent<M,L> event = new LifecycleEvent<M,L>(this.lifecycle, type, data);
-    LifecycleListener<M,L> interested[] = listeners;
+    LifecycleEvent<M, L> event = new LifecycleEvent<M, L>(this.lifecycle, type, data);
+    LifecycleListener<M, L> interested[] = listeners;
     for (int i = 0; i < interested.length; i++) {
       interested[i].broadcast(event);
     }
   }
-  
+
   /**
    * Removes a lifecycle event listener which was registered to component.
-   *
+   * 
    * @param listener The listener will be removed.
    */
   public void removeLifecycleListener(LifecycleListener<M, L> listener) {
@@ -102,13 +100,12 @@ public final class LifecycleSupport<M, L> {
           break;
         }
       }
-      //not found any listener in Listeners
+      // not found any listener in Listeners
       if (n < 0) {
         return;
       }
 
-
-      //Execute to remove the listener
+      // Execute to remove the listener
       LifecycleListener<M, L> results[] = new LifecycleListener[listeners.length - 1];
       int j = 0;
       for (int i = 0; i < listeners.length; i++) {
@@ -119,7 +116,7 @@ public final class LifecycleSupport<M, L> {
       listeners = results;
     }
   }
-  
+
   /**
    * Gets the lifecycle listeners associated with this lifecycle. If this
    * Lifecycle has no listeners registered, a zero-length array is returned.
@@ -129,6 +126,5 @@ public final class LifecycleSupport<M, L> {
     return listeners;
 
   }
-  
-  
+
 }

@@ -30,8 +30,10 @@ import org.json.simple.JSONStreamAware;
 /**
  * The general model extends {@link org.json.simple.JSONObject}'s interfaces.
  * <p/>
- * Inspiration taken from: http://code.google.com/p/opensocial-java-client/source/browse/trunk/java/src/org/opensocial/models/Model.java
- *
+ * Inspiration taken from:
+ * http://code.google.com/p/opensocial-java-client/source
+ * /browse/trunk/java/src/org/opensocial/models/Model.java
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -41,10 +43,10 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
    * The property change event support for this model.
    */
   protected PropertyChangeSupport propertyChanges = new PropertyChangeSupport(this);
-  
+
   /**
    * Returns the complete set of properties associated with the model instance.
-   *
+   * 
    * @return a string array
    */
   public String[] getFieldNames() {
@@ -61,8 +63,9 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns {@code true} if a value is associated with the specified field name, {@code false} otherwise.
-   *
+   * Returns {@code true} if a value is associated with the specified field
+   * name, {@code false} otherwise.
+   * 
    * @param fieldName name of field to look up
    * @return a boolean value
    */
@@ -72,7 +75,7 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
 
   /**
    * Returns the value of the specified field as an Object.
-   *
+   * 
    * @param fieldName name of field whose value is to be returned
    * @return an object associated with fieldName
    */
@@ -81,9 +84,10 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns the value of the specified field as a {@link Map}. Equivalent to {@code (Map) getField(fieldName)}, hence
-   * this method will throw a ClassCastException if the field does not implement Map.
-   *
+   * Returns the value of the specified field as a {@link Map}. Equivalent to
+   * {@code (Map) getField(fieldName)}, hence this method will throw a
+   * ClassCastException if the field does not implement Map.
+   * 
    * @param fieldName name of field whose value is to be returned
    * @return a map associated with fieldName
    * @see ClassCastException
@@ -93,9 +97,11 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns the value of the specified field as a {@link java.util.List}. Equivalent to {@code (List)
-   * getField(fieldName)}, hence this method will throw a ClassCastException if the field does not implement List.
-   *
+   * Returns the value of the specified field as a {@link java.util.List}.
+   * Equivalent to {@code (List)
+   * getField(fieldName)}, hence this method will throw a ClassCastException if
+   * the field does not implement List.
+   * 
    * @param fieldName name of field whose value is to be returned
    * @return a list associated with fieldName
    * @see ClassCastException
@@ -105,9 +111,10 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns the value of the specified field as a {@link String}. Equivalent to {@code (String) getField(fieldName)},
-   * hence this method will throw a ClassCastException if the field is not of type String.
-   *
+   * Returns the value of the specified field as a {@link String}. Equivalent to
+   * {@code (String) getField(fieldName)}, hence this method will throw a
+   * ClassCastException if the field is not of type String.
+   * 
    * @param fieldName name of field whose value is to be returned
    * @return a string associated with fieldName
    * @see ClassCastException
@@ -121,8 +128,9 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns {@code true} if the value of the specified field implements {@link Map}, {@code false} otherwise.
-   *
+   * Returns {@code true} if the value of the specified field implements
+   * {@link Map}, {@code false} otherwise.
+   * 
    * @param fieldName name of field to look up
    * @return a boolean value
    */
@@ -136,8 +144,9 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   }
 
   /**
-   * Returns {@code true} if the value of the specified field implements {@link List}, {@code false} otherwise.
-   *
+   * Returns {@code true} if the value of the specified field implements
+   * {@link List}, {@code false} otherwise.
+   * 
    * @param fieldName name of field to look up
    * @return a boolean value
    */
@@ -152,21 +161,22 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
 
   /**
    * Sets the value of the specified field to the passed Object.
-   *
+   * 
    * @param fieldName name of field to set
-   * @param value     object to associate with passed field name
+   * @param value object to associate with passed field name
    */
   public void setField(String fieldName, Object value) {
-  //Raise event when change value of property.
+    // Raise event when change value of property.
     propertyChanges.propertyChange(fieldName, get(fieldName), value);
     put(fieldName, value);
   }
 
   /**
    * Adds the passed Object to the list field with the specified name.
-   *
-   * @param fieldName name of list field for which the passed item should be added
-   * @param item      item to add
+   * 
+   * @param fieldName name of list field for which the passed item should be
+   *          added
+   * @param item item to add
    */
   public void addToListField(String fieldName, Object item) {
     List<Object> listField;
@@ -180,7 +190,7 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
     listField.add(item);
     put(fieldName, listField);
   }
-  
+
   /**
    * Adds a property change event listener to this model
    * 
@@ -189,19 +199,20 @@ public abstract class Model extends JSONObject implements Map, JSONAware, JSONSt
   public void addPropertyChangeListener(PropertyChangeListener listener) {
     propertyChanges.addPropertyChangeListener(listener);
   }
-  
+
   /**
    * Removes a property change event listener which was added to this model.
-   *
+   * 
    * @param listener The listener to be removed.
    */
   public void removePropertyChangeListener(PropertyChangeListener listener) {
     propertyChanges.removeLifecycleListener(listener);
   }
-  
+
   /**
-   * Gets the property change listeners registered and associated with this property change listener. If this
-   * property change has no listeners registered, a zero-length array is returned.
+   * Gets the property change listeners registered and associated with this
+   * property change listener. If this property change has no listeners
+   * registered, a zero-length array is returned.
    * 
    * @return an array of listeners
    */

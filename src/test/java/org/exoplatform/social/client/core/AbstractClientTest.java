@@ -16,7 +16,6 @@
  */
 package org.exoplatform.social.client.core;
 
-
 import org.exoplatform.social.client.api.ClientServiceFactory;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.UnsupportedRestVersionException;
@@ -27,24 +26,26 @@ import org.exoplatform.social.client.api.service.IdentityService;
 import org.exoplatform.social.client.api.service.VersionService;
 
 /**
- * The base abstract class for integration test. This class is provided for extending to set the
- * restVersion for use by implementing {@link #setRestVersion()}.
- *
- * It's required for all tests to check {@link #canRunTest()} to make sure if the rest vesion is not supported
- * by server, just pass.
- *
+ * The base abstract class for integration test. This class is provided for
+ * extending to set the restVersion for use by implementing
+ * {@link #setRestVersion()}. It's required for all tests to check
+ * {@link #canRunTest()} to make sure if the rest vesion is not supported by
+ * server, just pass.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since 1.0.0-alpha2
  */
 public abstract class AbstractClientTest {
 
-  protected VersionService versionService;
+  protected VersionService                versionService;
+
   protected IdentityService<RestIdentity> identityService;
+
   protected ActivityService<RestActivity> activityService;
 
-  private String defaultRestVersion;
+  private String                          defaultRestVersion;
 
-  private boolean canRun = false;
+  private boolean                         canRun = false;
 
   /**
    * template method
@@ -114,8 +115,9 @@ public abstract class AbstractClientTest {
   };
 
   /**
-   * To checks if the rest version is supported by the server to run tests, otherwise, just pass.
-   *
+   * To checks if the rest version is supported by the server to run tests,
+   * otherwise, just pass.
+   * 
    * @return a boolean value
    */
   protected boolean canRunTest() {
@@ -131,10 +133,11 @@ public abstract class AbstractClientTest {
   }
 
   /**
-   * Starts new session as a authenticated user (with username and password) to make any request.
-   *
-   * @param username  the username
-   * @param password  the password
+   * Starts new session as a authenticated user (with username and password) to
+   * make any request.
+   * 
+   * @param username the username
+   * @param password the password
    */
   public void startSessionAs(String username, String password) {
     SocialClientContext.setUsername(username);

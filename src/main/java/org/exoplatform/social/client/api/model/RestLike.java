@@ -18,15 +18,17 @@ package org.exoplatform.social.client.api.model;
 
 /**
  * The like item of an activity.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
 public class RestLike extends Model {
 
   /**
-   * The fields that represent the RestLike object in json form. <p/>
-   * <p> All of the fields that RestLike can have.
+   * The fields that represent the RestLike object in json form.
+   * <p/>
+   * <p>
+   * All of the fields that RestLike can have.
    * </p>
    */
   public static enum Field {
@@ -46,7 +48,7 @@ public class RestLike extends Model {
 
     /**
      * create a field base on the a json element.
-     *
+     * 
      * @param jsonString the name of the element
      */
     private Field(String jsonString) {
@@ -55,7 +57,7 @@ public class RestLike extends Model {
 
     /**
      * emit the field as a json element.
-     *
+     * 
      * @return the field name
      */
     @Override
@@ -73,7 +75,7 @@ public class RestLike extends Model {
 
   /**
    * Constructor.
-   *
+   * 
    * @param activityId the activity id
    * @param identityId the identity id
    */
@@ -81,10 +83,10 @@ public class RestLike extends Model {
     setActivityId(activityId);
     setIdentityId(identityId);
   }
-  
+
   /**
    * Gets the activity id.
-   *
+   * 
    * @return the activity id
    */
   public String getActivityId() {
@@ -93,7 +95,7 @@ public class RestLike extends Model {
 
   /**
    * Sets the activity id.
-   *
+   * 
    * @param activityId the activity id
    */
   public void setActivityId(String activityId) {
@@ -102,7 +104,7 @@ public class RestLike extends Model {
 
   /**
    * Gets the identity id.
-   *
+   * 
    * @return the identity id
    */
   public String getIdentityId() {
@@ -111,7 +113,7 @@ public class RestLike extends Model {
 
   /**
    * Sets the identity id.
-   *
+   * 
    * @param identityId the identity id
    */
   public void setIdentityId(String identityId) {
@@ -122,11 +124,11 @@ public class RestLike extends Model {
    * Gets the activity associated with this like.
    * <p/>
    * This method must be lazy loading.
-   *
+   * 
    * @return the activity
    */
   public RestActivity getActivity() {
-    //TODO implement this
+    // TODO implement this
     return null;
   }
 
@@ -134,11 +136,11 @@ public class RestLike extends Model {
    * Gets the identity associated with this like.
    * <p/>
    * This method must be lazy loading.
-   *
+   * 
    * @return the identity
    */
   public RestIdentity getIdentity() {
-    //TODO implement this
+    // TODO implement this
     return null;
   }
 }

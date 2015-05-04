@@ -16,18 +16,18 @@
  */
 package org.exoplatform.social.client.core.model;
 
-import org.exoplatform.social.client.api.model.RestLike;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 
+import org.exoplatform.social.client.api.model.RestLike;
+import org.testng.annotations.Test;
+
 /**
  * Unit Test for {@link RestLikeImpl}
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
- * @since  May 24, 2011
+ * @since May 24, 2011
  */
 public class RestLikeImplTest {
 
@@ -37,10 +37,9 @@ public class RestLikeImplTest {
     final String identityId = "abcdegheogi30";
     RestLike restLike = new RestLike(activityId, identityId);
     assertThat("restLike must not be null", restLike, notNullValue());
-    assertThat("restLike.getActivityId() must return: " + activityId , restLike.getActivityId(), equalTo(activityId));
+    assertThat("restLike.getActivityId() must return: " + activityId, restLike.getActivityId(), equalTo(activityId));
     assertThat("restLike.getIdentityId() must return: " + identityId, restLike.getIdentityId(), equalTo(identityId));
   }
-
 
   @Test
   public void shouldGetIdentity() {
@@ -49,7 +48,6 @@ public class RestLikeImplTest {
 
   @Test
   public void shouldGetActivity() {
-
 
   }
 

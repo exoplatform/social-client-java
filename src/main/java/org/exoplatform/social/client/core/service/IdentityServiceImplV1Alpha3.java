@@ -16,6 +16,8 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
+
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -29,8 +31,6 @@ import org.exoplatform.social.client.api.util.SocialHttpClientSupport;
 import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
 import org.json.simple.parser.ParseException;
 
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
-
 /**
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since 10/6/11
@@ -41,7 +41,8 @@ public class IdentityServiceImplV1Alpha3 implements IdentityService<RestIdentity
 
   @Override
   public RestIdentity getIdentity(String identityProvider, String remoteId) throws SocialClientLibException {
-    if ((identityProvider == null) || (remoteId == null)) throw new NullPointerException("Input param can not be null.");
+    if ((identityProvider == null) || (remoteId == null))
+      throw new NullPointerException("Input param can not be null.");
     String targetURL = BASE_URL + "identity/" + identityProvider + "/" + remoteId + ".json";
     try {
       HttpResponse response = SocialHttpClientSupport.executeGet(targetURL, POLICY.BASIC_AUTH);
@@ -66,7 +67,8 @@ public class IdentityServiceImplV1Alpha3 implements IdentityService<RestIdentity
 
   @Override
   public RestIdentity get(String uuid) throws SocialClientLibException {
-    if (uuid == null) throw new NullPointerException("Input param can not be null");
+    if (uuid == null)
+      throw new NullPointerException("Input param can not be null");
     final String targetURL = BASE_URL + "identity/" + uuid + ".json";
     try {
       HttpResponse response = SocialHttpClientSupport.executeGet(targetURL, POLICY.BASIC_AUTH);

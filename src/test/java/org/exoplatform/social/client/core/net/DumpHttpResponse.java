@@ -31,16 +31,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 29, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 29, 2011
  */
 public class DumpHttpResponse {
   private static final Logger LOGGER = LoggerFactory.getLogger(DumpHttpResponse.class);
-  
+
   /**
    * Dump the HttpResponse content which Rest Service to return.
+   * 
    * @param entity Entity to dump
    * @throws ParseException
    * @throws IOException
@@ -51,20 +50,21 @@ public class DumpHttpResponse {
       LOGGER.debug("\n\n++++++++++CONTENT OF RESPONSE+++++++++++++++++++++++\n\n");
       LOGGER.debug("RESPONSE CONTENT::" + responseContent);
       try {
-          Map contentMap = SocialJSONDecodingSupport.parser(responseContent);
-          Set<Entry> list = contentMap.entrySet();
-          for(Entry e : list) {
-            LOGGER.debug(e.getKey() +  "::" + e.getValue());
-          }
+        Map contentMap = SocialJSONDecodingSupport.parser(responseContent);
+        Set<Entry> list = contentMap.entrySet();
+        for (Entry e : list) {
+          LOGGER.debug(e.getKey() + "::" + e.getValue());
+        }
       } catch (org.json.simple.parser.ParseException pex) {
         throw new SocialHttpClientException("dumpContent() is parsing error.", pex);
       }
-      
+
     }
   }
 
   /**
    * Dump the HttpResponse header which Rest Service to return.
+   * 
    * @param response response to dump
    */
   public static void dumpHeader(HttpResponse response) {

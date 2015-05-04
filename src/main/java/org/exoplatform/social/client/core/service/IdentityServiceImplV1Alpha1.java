@@ -16,6 +16,11 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.buildCommonRestPathFromContext;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -30,18 +35,12 @@ import org.exoplatform.social.client.api.service.ServiceException;
 import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
 import org.json.simple.parser.ParseException;
 
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.buildCommonRestPathFromContext;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
-
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
-public class IdentityServiceImplV1Alpha1 extends ServiceBase<RestIdentity, IdentityService<RestIdentity>> implements IdentityService<RestIdentity> {
+public class IdentityServiceImplV1Alpha1 extends ServiceBase<RestIdentity, IdentityService<RestIdentity>> implements
+    IdentityService<RestIdentity> {
   private static final String BASE_URL = buildCommonRestPathFromContext(true);
 
   @Override
@@ -51,7 +50,8 @@ public class IdentityServiceImplV1Alpha1 extends ServiceBase<RestIdentity, Ident
 
   @Override
   public RestIdentity get(String uuid) throws SocialClientLibException {
-    if (uuid == null) throw new NullPointerException("Input param can not be null");
+    if (uuid == null)
+      throw new NullPointerException("Input param can not be null");
     final String targetURL = BASE_URL + "identity/" + uuid + ".json";
 
     try {
@@ -80,8 +80,10 @@ public class IdentityServiceImplV1Alpha1 extends ServiceBase<RestIdentity, Ident
    */
   @Override
   public String getIdentityId(String provider, String remoteId) throws SocialClientLibException {
-    if ((provider == null) || (remoteId == null)) throw new NullPointerException("Input param can not be null.");
-    final String targetURL =  "/" + SocialClientContext.getRestContextName() + "/" + SocialClientContext.getPortalContainerName() + "/social/identity/" + remoteId + "/id/show.json";
+    if ((provider == null) || (remoteId == null))
+      throw new NullPointerException("Input param can not be null.");
+    final String targetURL = "/" + SocialClientContext.getRestContextName() + "/" + SocialClientContext.getPortalContainerName()
+        + "/social/identity/" + remoteId + "/id/show.json";
 
     try {
       HttpResponse response = executeGet(targetURL, POLICY.NO_AUTH);

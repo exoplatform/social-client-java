@@ -25,7 +25,7 @@ import org.apache.http.HttpResponse;
 /**
  * The client context to hold states of: host, port, portalContainerName,
  * restContextName and rest version and auth schema.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -35,9 +35,7 @@ public class SocialClientContext {
    * The enum for supported Social Rest APIs versions.
    */
   public static enum SupportedVersion {
-    V1_ALPHA3("v1-alpha3"),
-    V1_ALPHA2("v1-alpha2"),
-    V1_ALPHA1("v1-alpha1");
+    V1_ALPHA3("v1-alpha3"), V1_ALPHA2("v1-alpha2"), V1_ALPHA1("v1-alpha1");
     /**
      * The string field representing string version
      */
@@ -45,12 +43,13 @@ public class SocialClientContext {
 
     /**
      * Create a SupportedVersion instance based on version string
-     *
+     * 
      * @param version the version string
      */
     private SupportedVersion(String version) {
       this.version = version;
     }
+
     @Override
     public String toString() {
       return version;
@@ -71,7 +70,7 @@ public class SocialClientContext {
 
   /**
    * Gets host of the portal container to access services.
-   *
+   * 
    * @return the host
    */
   public static String getHost() {
@@ -80,7 +79,7 @@ public class SocialClientContext {
 
   /**
    * Sets host of the portal container to access services.
-   *
+   * 
    * @param newHost the host
    */
   public static void setHost(String newHost) {
@@ -89,7 +88,7 @@ public class SocialClientContext {
 
   /**
    * Gets port of the portal container to access services.
-   *
+   * 
    * @return the port
    */
   public static int getPort() {
@@ -98,7 +97,7 @@ public class SocialClientContext {
 
   /**
    * Sets port of the portal container to access services.
-   *
+   * 
    * @param newPort the port
    */
   public static void setPort(int newPort) {
@@ -106,9 +105,9 @@ public class SocialClientContext {
   }
 
   /**
-   * Gets portal container name of the portal container.
-   * For example: socialdemo, portal, intranet...
-   *
+   * Gets portal container name of the portal container. For example:
+   * socialdemo, portal, intranet...
+   * 
    * @return the portal container name
    */
   public static String getPortalContainerName() {
@@ -117,7 +116,7 @@ public class SocialClientContext {
 
   /**
    * Sets the portal container name of the portal container.
-   *
+   * 
    * @param newPortalContainerName the portal container name
    */
   public static void setPortalContainerName(String newPortalContainerName) {
@@ -126,7 +125,7 @@ public class SocialClientContext {
 
   /**
    * Gets the rest context name of the portal container.
-   *
+   * 
    * @return the rest context name
    */
   public static String getRestContextName() {
@@ -135,17 +134,16 @@ public class SocialClientContext {
 
   /**
    * Sets the rest context name of the portal container.
-   *
+   * 
    * @param newRestContextName the rest context name
    */
   public static void setRestContextName(String newRestContextName) {
     restContextName = newRestContextName;
   }
 
-
   /**
    * Gets the eXo Social Rest version.
-   *
+   * 
    * @return the eXo Social Rest version
    */
   public static String getRestVersion() {
@@ -154,7 +152,7 @@ public class SocialClientContext {
 
   /**
    * Sets the eXo Social Rest version.
-   *
+   * 
    * @param newRestVersion the eXo Social Rest version
    */
   public static void setRestVersion(String newRestVersion) throws UnsupportedRestVersionException {
@@ -166,7 +164,7 @@ public class SocialClientContext {
 
   /**
    * Gets the user name for basic authentication.
-   *
+   * 
    * @return the user name
    */
   public static String getUsername() {
@@ -175,7 +173,7 @@ public class SocialClientContext {
 
   /**
    * Sets the user name for basic authentication.
-   *
+   * 
    * @param newUsername the user name
    */
   public static void setUsername(String newUsername) {
@@ -184,7 +182,7 @@ public class SocialClientContext {
 
   /**
    * Gets the password for basic authentication
-   *
+   * 
    * @return the password
    */
   public static String getPassword() {
@@ -193,17 +191,16 @@ public class SocialClientContext {
 
   /**
    * Sets the password for basic authentication.
-   *
+   * 
    * @param newPassword the password
    */
   public static void setPassword(String newPassword) {
     password = newPassword;
   }
 
-
-
   /**
    * Gets protocol of the portal container to access services.
+   * 
    * @return
    */
   public static String getProtocol() {
@@ -212,6 +209,7 @@ public class SocialClientContext {
 
   /**
    * Sets protocol of the portal container to access services.
+   * 
    * @param protocol
    */
   public static void setProtocol(String protocol) {
@@ -220,17 +218,16 @@ public class SocialClientContext {
 
   /**
    * Gets current request and response context.
-   *
+   * 
    * @return current context
    */
   public Context getCurrentContext() {
     return currentContext;
   }
 
-
   /**
    * Checks to know if this lib is running on development mode to log more info.
-   *
+   * 
    * @return a boolean value
    */
   public static boolean isDeveloping() {
@@ -239,7 +236,7 @@ public class SocialClientContext {
 
   /**
    * Sets this lib to run on developing mode or not.
-   *
+   * 
    * @param isDevelopingMode a boolean value
    */
   public static void setIsDeveloping(boolean isDevelopingMode) {
@@ -248,33 +245,40 @@ public class SocialClientContext {
 
   /**
    * Sets current request and response context.
-   *
+   * 
    * @param currentContext the current context
    */
   public void setCurrentContext(Context currentContext) {
     this.currentContext = currentContext;
   }
 
-  private static String host;
-  private static int port;
-  private static String protocol = "http";
-  private static String portalContainerName;
-  private static String restContextName;
+  private static String  host;
+
+  private static int     port;
+
+  private static String  protocol     = "http";
+
+  private static String  portalContainerName;
+
+  private static String  restContextName;
+
   /**
    * Default is the latest version
    */
-  private static String restVersion = supportedVersionList.get(0);
-  private static String username;
-  private static String password;
+  private static String  restVersion  = supportedVersionList.get(0);
+
+  private static String  username;
+
+  private static String  password;
+
   private static boolean isDeveloping = false;
 
-  private Context currentContext;
-
+  private Context        currentContext;
 
   /**
    * Keeping the HttpRequest and HttpResponse for Social RestService
+   * 
    * @author thanh_vucong
-   *
    */
   public class Context {
     private HttpRequest  request;

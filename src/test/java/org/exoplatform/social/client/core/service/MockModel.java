@@ -18,16 +18,15 @@ package org.exoplatform.social.client.core.service;
 
 import org.exoplatform.social.client.api.model.Model;
 
-
 public class MockModel extends Model {
   /**
    * 
    */
   private static final long serialVersionUID = 1L;
-  
+
   public static enum Field {
-    ID("id"),CONTENT("content");
-    
+    ID("id"), CONTENT("content");
+
     /**
      * The json field that the instance represents.
      */
@@ -35,7 +34,7 @@ public class MockModel extends Model {
 
     /**
      * creates a field base on the a json element.
-     *
+     * 
      * @param jsonString the name of the element
      */
     private Field(String jsonString) {
@@ -44,7 +43,7 @@ public class MockModel extends Model {
 
     /**
      * emits the field as a json element.
-     *
+     * 
      * @return the field name
      */
     @Override
@@ -52,7 +51,5 @@ public class MockModel extends Model {
       return jsonString;
     }
   }
-
-  
 
 }

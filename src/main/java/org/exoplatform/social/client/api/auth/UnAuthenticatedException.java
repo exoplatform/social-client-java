@@ -17,27 +17,27 @@
 package org.exoplatform.social.client.api.auth;
 
 /**
- * The Access Denied Exception when something needs authentication but
- * it is not authenticated yet.
- *
+ * The Access Denied Exception when something needs authentication but it is not
+ * authenticated yet.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
- * @since  May 20, 2011
+ * @since May 20, 2011
  */
 public class UnAuthenticatedException extends Exception {
 
   /**
    * Exception without any message.
    */
-  public UnAuthenticatedException(){
+  public UnAuthenticatedException() {
     super();
   }
 
   /**
    * Exception with message.
-   *
+   * 
    * @param message the message
    */
-  public UnAuthenticatedException(String message){
+  public UnAuthenticatedException(String message) {
     super(message);
   }
 }

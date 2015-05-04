@@ -16,75 +16,72 @@
  */
 package org.exoplatform.social.client.api.util;
 
-
 import org.exoplatform.social.client.api.event.PropertyChangeEvent;
 import org.exoplatform.social.client.api.event.PropertyChangeListener;
 import org.exoplatform.social.client.api.model.Model;
 
 /**
  * This is a utility class that can be used by models that support bound
- * properties.  You can use an instance of this class as a member field
- * of your bean and delegate various work to it.
- *
+ * properties. You can use an instance of this class as a member field of your
+ * bean and delegate various work to it.
  * 
  * @author thanh_vucong
- *
  */
 public final class PropertyChangeSupport {
 
   /**
    * The source bean for property change events that we will broadcast.
    */
-  private Model source = null;
+  private Model                  source        = null;
+
   /**
    * The set of registered PropertyChangeListeners for event notifications.
    */
-  private PropertyChangeListener listeners[] = new PropertyChangeListener[0];
-  
+  private PropertyChangeListener listeners[]   = new PropertyChangeListener[0];
+
   /**
    * Lock object for change to listeners
    */
-  private final Object listenersLock = new Object();
-  
-  
+  private final Object           listenersLock = new Object();
+
   /**
-   * Constructs a new <code>PropertyChangeSupport</code> object associated with the specified Model object.
-   *
+   * Constructs a new <code>PropertyChangeSupport</code> object associated with
+   * the specified Model object.
+   * 
    * @param source
    */
   public PropertyChangeSupport(Model source) {
     this.source = source;
   }
-  
+
   /**
    * Adds a PropertyChange event listener to this component.
-   *
+   * 
    * @param listener The listener is added.
    */
   public void addPropertyChangeListener(PropertyChangeListener listener) {
-    
-    synchronized(listenersLock) {
+
+    synchronized (listenersLock) {
       PropertyChangeListener results[] = new PropertyChangeListener[listeners.length + 1];
       System.arraycopy(listeners, 0, results, 0, listeners.length);
-      //Add the PropertyChangeListener to the new position.    
+      // Add the PropertyChangeListener to the new position.
       results[listeners.length] = listener;
       listeners = results;
     }
   }
-  
+
   /**
    * Notifies all PropertyChange event listeners that a particular event has
-   * occurred for this Container. The default implementation performs 
-   * this notification synchronously using the calling thread.
-   * 
-   * No event is fired if old and new are equal and non-null.
+   * occurred for this Container. The default implementation performs this
+   * notification synchronously using the calling thread. No event is fired if
+   * old and new are equal and non-null.
    * 
    * @param propertyName The PropertyName string
    * @param oldValue oldValue object.
    * @param newValue newValue object.
    */
   public void propertyChange(String propertyName, Object oldValue, Object newValue) {
-    
+
     if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
       return;
     }
@@ -94,9 +91,10 @@ public final class PropertyChangeSupport {
       interested[i].propertyChange(event);
     }
   }
-  
+
   /**
    * Removes a PropertyChange event listener which was registered to model
+   * 
    * @param listener The listener will be removed.
    */
   public void removeLifecycleListener(PropertyChangeListener listener) {
@@ -108,7 +106,7 @@ public final class PropertyChangeSupport {
           break;
         }
       }
-      //not found any listener in Listeners
+      // not found any listener in Listeners
       if (n < 0) {
         return;
       }
@@ -126,13 +124,13 @@ public final class PropertyChangeSupport {
       listeners = results;
     }
   }
-  
+
   /**
    * Gets the lifecycle listeners associated with this lifecycle. If this
    * Lifecycle has no listeners registered, a zero-length array is returned.
    */
   public PropertyChangeListener[] findPropertyChangeListeners() {
-      return listeners;
+    return listeners;
   }
-  
+
 }

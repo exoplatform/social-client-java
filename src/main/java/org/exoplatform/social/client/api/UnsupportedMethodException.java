@@ -17,12 +17,13 @@
 package org.exoplatform.social.client.api;
 
 /**
- * Exception when one method is called but it is not implemented or supported yet.
+ * Exception when one method is called but it is not implemented or supported
+ * yet.
  * 
  * @author <a href="mailto:hanhvq@exoplatform.com">Hanh Vi Quoc</a>
- * @since Jul 29, 2011  
+ * @since Jul 29, 2011
  */
-public class UnsupportedMethodException extends RuntimeException{
+public class UnsupportedMethodException extends RuntimeException {
 
   /**
    * Exception without any message.

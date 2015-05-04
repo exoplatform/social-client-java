@@ -17,12 +17,14 @@
 package org.exoplatform.social.client.core.service;
 
 /**
- * Unit Test for {@link org.exoplatform.social.client.api.service.ActivityService}'s implementation.
- *
+ * Unit Test for
+ * {@link org.exoplatform.social.client.api.service.ActivityService}'s
+ * implementation.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jul 3, 2011
  */
 
 public class ActivityServiceV1Alpha1Test {
-  //TODO
+  // TODO
 }

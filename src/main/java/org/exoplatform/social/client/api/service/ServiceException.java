@@ -18,9 +18,9 @@ package org.exoplatform.social.client.api.service;
 
 /**
  * The Service Exception class.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
- * @since  May 19, 2011
+ * @since May 19, 2011
  */
 public class ServiceException extends RuntimeException {
 
@@ -28,10 +28,10 @@ public class ServiceException extends RuntimeException {
 
   /**
    * Constructor for ServiceException.
-   *
+   * 
    * @param classService the class service
-   * @param message      the message of exception
-   * @param cause        the cause of exception
+   * @param message the message of exception
+   * @param cause the cause of exception
    */
   public ServiceException(Class classService, String message, Throwable cause) {
     super(message, cause);
@@ -40,9 +40,9 @@ public class ServiceException extends RuntimeException {
 
   /**
    * Constructor for ServiceException.
-   *
-   * @param message      the message of exception
-   * @param cause        the cause of exception
+   * 
+   * @param message the message of exception
+   * @param cause the cause of exception
    */
   public ServiceException(String message, Throwable cause) {
     super(message, cause);
@@ -50,8 +50,8 @@ public class ServiceException extends RuntimeException {
 
   /**
    * Constructor for ServiceException.
-   *
-   * @param message      the message of exception
+   * 
+   * @param message the message of exception
    */
   public ServiceException(String message) {
     super(message);
@@ -59,7 +59,7 @@ public class ServiceException extends RuntimeException {
 
   /**
    * Gets the class service that cause the exception.
-   *
+   * 
    * @return the class service FQN
    */
   public String getClassService() {

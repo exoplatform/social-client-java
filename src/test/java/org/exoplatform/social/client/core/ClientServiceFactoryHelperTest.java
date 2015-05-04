@@ -16,6 +16,10 @@
  */
 package org.exoplatform.social.client.core;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
+
 import org.exoplatform.social.client.api.ClientServiceFactory;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.SocialClientContext.SupportedVersion;
@@ -29,13 +33,9 @@ import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha2;
 import org.exoplatform.social.client.core.service.IdentityServiceImplV1Alpha3;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.core.IsNull.notNullValue;
-
 /**
  * Uni test for {@link ClientServiceFactoryHelper}.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jul 1, 2011
  */
@@ -46,8 +46,6 @@ public class ClientServiceFactoryHelperTest {
     ClientServiceFactory clientServiceFactory = ClientServiceFactoryHelper.getClientServiceFactory();
     assertThat("clientServiceFactory must not be null", clientServiceFactory, notNullValue());
   }
-
-
 
   @Test
   public void shouldSupportV1Alpha3() {
@@ -62,7 +60,6 @@ public class ClientServiceFactoryHelperTest {
                identityService instanceof IdentityServiceImplV1Alpha3,
                equalTo(true));
   }
-
 
   @Test
   public void shouldSupportV1Alpha2() {
@@ -91,6 +88,5 @@ public class ClientServiceFactoryHelperTest {
                identityService instanceof IdentityServiceImplV1Alpha1,
                equalTo(true));
   }
-
 
 }

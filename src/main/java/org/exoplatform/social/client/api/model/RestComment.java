@@ -27,7 +27,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  * The RestComment model.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -35,11 +35,9 @@ public class RestComment extends Model {
 
   /**
    * The fields that represent the RestComment object in json form.
-   *
    * <p>
    * All of the fields that comments can have.
    * </p>
-   *
    */
   public static enum Field {
     ID("id"),
@@ -47,7 +45,7 @@ public class RestComment extends Model {
     IDENTITY_ID("identityId"),
     /** the json field for activityId. */
     ACTIVITY_ID("activityId"),
-     /** the json field for streamTitle. */
+    /** the json field for streamTitle. */
     TEXT("text"),
     /** the json field for postedTime. */
     POSTED_TIME("postedTime"),
@@ -63,7 +61,7 @@ public class RestComment extends Model {
 
     /**
      * create a field base on the a json element.
-     *
+     * 
      * @param jsonString the name of the element
      */
     private Field(String jsonString) {
@@ -72,7 +70,7 @@ public class RestComment extends Model {
 
     /**
      * emit the field as a json element.
-     *
+     * 
      * @return the field name
      */
     @Override
@@ -87,11 +85,11 @@ public class RestComment extends Model {
   public RestComment() {
 
   }
-  
+
   /**
    * Constructor.
-   *
-   * @param id         the comment id
+   * 
+   * @param id the comment id
    * @param identityId the identity id
    * @param activityId the activity id
    * @param postedTime the posted time
@@ -103,10 +101,10 @@ public class RestComment extends Model {
     setPostedTime(postedTime);
     setCreatedAt(createdAt);
   }
-  
+
   /**
    * Gets the comment id.
-   *
+   * 
    * @return the comment id
    */
   public String getId() {
@@ -115,7 +113,7 @@ public class RestComment extends Model {
 
   /**
    * Sets the comment id.
-   *
+   * 
    * @param id the comment id
    */
   public void setId(String id) {
@@ -124,7 +122,7 @@ public class RestComment extends Model {
 
   /**
    * Gets identity id who posted this comment.
-   *
+   * 
    * @return the identity id
    * @deprecated only use with v1-alpha1
    */
@@ -134,7 +132,7 @@ public class RestComment extends Model {
 
   /**
    * Sets identity id who posted this comment.
-   *
+   * 
    * @param identityId the identity id
    * @deprecated only use with v1-alpha1
    */
@@ -144,7 +142,7 @@ public class RestComment extends Model {
 
   /**
    * Gets the activity id which is associated with this comment.
-   *
+   * 
    * @return the activity id.
    */
   public String getActivityId() {
@@ -153,7 +151,7 @@ public class RestComment extends Model {
 
   /**
    * Sets the activity which is associated with this comment.
-   *
+   * 
    * @param activityId the activity id
    */
   public void setActivityId(String activityId) {
@@ -162,7 +160,7 @@ public class RestComment extends Model {
 
   /**
    * Gets the comment content.
-   *
+   * 
    * @return the comment content.
    */
   public String getText() {
@@ -171,7 +169,7 @@ public class RestComment extends Model {
 
   /**
    * Sets the comment content.
-   *
+   * 
    * @param content the comment content
    */
   public void setText(String content) {
@@ -180,7 +178,7 @@ public class RestComment extends Model {
 
   /**
    * Gets the posted time of this comment as timestamp value.
-   *
+   * 
    * @return the posted time of this comment
    */
   public Long getPostedTime() {
@@ -189,7 +187,7 @@ public class RestComment extends Model {
 
   /**
    * Sets the posted time of this comment as timestamp value.
-   *
+   * 
    * @param postedTime the posted time of this comment.
    */
   public void setPostedTime(Long postedTime) {
@@ -198,7 +196,7 @@ public class RestComment extends Model {
 
   /**
    * Gets the created at of this comment as a time string value.
-   *
+   * 
    * @return the time string value
    */
   public String getCreatedAt() {
@@ -207,7 +205,7 @@ public class RestComment extends Model {
 
   /**
    * Sets the created at of this comment as a time string value.
-   *
+   * 
    * @param createdAt the time string value
    */
   public void setCreatedAt(String createdAt) {
@@ -215,10 +213,9 @@ public class RestComment extends Model {
   }
 
   /**
-   * Gets the activity is associated with this comment.
-   *
-   * This must be lazy loading for better performance.
-   *
+   * Gets the activity is associated with this comment. This must be lazy
+   * loading for better performance.
+   * 
    * @return the activity
    */
   public RestActivity getActivity() {
@@ -237,10 +234,9 @@ public class RestComment extends Model {
   }
 
   /**
-   * Gets the identity who commented.
-   *
-   * This must be lazy loading for better performance.
-   *
+   * Gets the identity who commented. This must be lazy loading for better
+   * performance.
+   * 
    * @return the identity
    * @deprecated only use with v1-alpha1
    */
@@ -258,23 +254,26 @@ public class RestComment extends Model {
     }
     return restIdentity;
   }
-  
+
   /**
-   * Gets the identity who commented.
-   * if poster identity is null this will be lazy loading the identity from Rest.
+   * Gets the identity who commented. if poster identity is null this will be
+   * lazy loading the identity from Rest.
+   * 
    * @return
    */
   public RestIdentity getPosterIdentity() {
     String posterIdentityJson = getFieldAsString(Field.POSTER_IDENTITY.toString());
     try {
-      return posterIdentityJson == null ? new RestIdentity() : SocialJSONDecodingSupport.parser(RestIdentity.class, posterIdentityJson);
+      return posterIdentityJson == null ? new RestIdentity() : SocialJSONDecodingSupport.parser(RestIdentity.class,
+                                                                                                posterIdentityJson);
     } catch (ParseException pex) {
       return new RestIdentity();
     }
   }
-  
+
   /**
    * Sets the identity who commented.
+   * 
    * @param restIdentity
    * @return
    */

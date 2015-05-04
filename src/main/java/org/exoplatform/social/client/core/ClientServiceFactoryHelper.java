@@ -16,19 +16,20 @@
  */
 package org.exoplatform.social.client.core;
 
+import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA1;
+import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA2;
+import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA3;
+
 import org.exoplatform.social.client.api.ClientServiceFactory;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA1;
-import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA2;
-import static org.exoplatform.social.client.api.SocialClientContext.SupportedVersion.V1_ALPHA3;
-
 /**
- * The clientServiceFactory helper to get {@link org.exoplatform.social.client.api.ClientServiceFactory} to work
- * with services.
- *
+ * The clientServiceFactory helper to get
+ * {@link org.exoplatform.social.client.api.ClientServiceFactory} to work with
+ * services.
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jul 1, 2011
  */
@@ -37,19 +38,19 @@ public class ClientServiceFactoryHelper {
   /**
    * Logger
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ClientServiceFactoryHelper.class);
+  private static final Logger         LOG                = LoggerFactory.getLogger(ClientServiceFactoryHelper.class);
 
   private static ClientServiceFactory clientServiceFactory;
 
   /**
-   * Used for unit testing purpose mainly, this should not happen on actual client code when 2 rest api versions are used
-   * at the same time
+   * Used for unit testing purpose mainly, this should not happen on actual
+   * client code when 2 rest api versions are used at the same time
    **/
-  private static String currentRestVersion = null;
+  private static String               currentRestVersion = null;
 
   /**
    * Gets the clientServiceFactory.
-   *
+   * 
    * @return the clientServiceFactory
    */
   public static ClientServiceFactory getClientServiceFactory() {
@@ -59,7 +60,7 @@ public class ClientServiceFactoryHelper {
         clientServiceFactory = new ClientServiceFactoryImplV1Alpha3();
       } else if (V1_ALPHA2.toString().equals(currentRestVersion)) {
         clientServiceFactory = new ClientServiceFactoryImplV1Alpha2();
-      } else  if (V1_ALPHA1.toString().equals(currentRestVersion)) {
+      } else if (V1_ALPHA1.toString().equals(currentRestVersion)) {
         clientServiceFactory = new ClientServiceFactoryImplV1Alpha1();
       }
     }

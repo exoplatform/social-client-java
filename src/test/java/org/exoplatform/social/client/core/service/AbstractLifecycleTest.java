@@ -32,27 +32,30 @@ import org.exoplatform.social.client.api.model.Model;
 
 public abstract class AbstractLifecycleTest {
 
-  protected Model mockModel = null;
-  protected ServiceBase<MockModel, MockService> mockService = null;
-  protected MockLifecycleListener captureLifecycle = null;
-  protected MockCRUDLifecycleListener captureCRUDLifecycle = null;
-  protected MockPropertyChangeListener capturePropertyChange = null;
+  protected Model                               mockModel             = null;
+
+  protected ServiceBase<MockModel, MockService> mockService           = null;
+
+  protected MockLifecycleListener               captureLifecycle      = null;
+
+  protected MockCRUDLifecycleListener           captureCRUDLifecycle  = null;
+
+  protected MockPropertyChangeListener          capturePropertyChange = null;
 
   public void setUp() throws Exception {
 
   }
-  
+
   public void tearDown() throws Exception {
     captureLifecycle = null;
     captureCRUDLifecycle = null;
     mockService = null;
   }
-  
+
   /**
    * Defines the MockEvent class.
-   *
+   * 
    * @author thanh_vucong
-   *
    */
   public class MockLifecycEvent extends LifecycleEvent<MockModel, MockService> {
 
@@ -76,51 +79,55 @@ public abstract class AbstractLifecycleTest {
     public void broadcast(LifecycleEvent<MockModel, MockService> event) {
       recordEvent(event);
     }
+
     /**
      * Verifies the event type which has been raised to this listener.
+     * 
      * @param eventName
      * @return
      */
     public boolean hasEvent(String eventName) {
       return events.contains(eventName);
     }
-    
+
     /**
      * Supports to record the event which raise to this listener.
+     * 
      * @param event
      */
     private void recordEvent(LifecycleEvent<MockModel, MockService> event) {
       events.add(event.getType());
     }
   }
-  
+
   /**
    * Defines the MockCRUDListener which uses for UnitTestCase.
-   *
+   * 
    * @author thanh_vucong
-   *
    */
   public class MockCRUDLifecycleListener implements CRUDLifecycleListener<MockModel> {
 
     Collection<String> events = new ArrayList<String>();
+
     @Override
     public void broadcast(CRUDLifecycleEvent<MockModel> event) {
       recordEvent(event);
-      
+
     }
+
     /**
      * Verifies the event type which has been raised to this listener.
-     *
+     * 
      * @param eventName
      * @return
      */
     public boolean hasEvent(String eventName) {
       return events.contains(eventName);
     }
-    
+
     /**
      * Supports to record the event which raise to this listener.
-     *
+     * 
      * @param event
      */
     private void recordEvent(CRUDLifecycleEvent<MockModel> event) {
@@ -142,26 +149,26 @@ public abstract class AbstractLifecycleTest {
     public void propertyChange(PropertyChangeEvent event) {
       recordEvent(event);
     }
-    
+
     /**
      * Verifies the event type which has been raised to this listener.
-     *
+     * 
      * @param propertyName
      * @return
      */
     public boolean hasEvent(String propertyName) {
       return eventHolder.containsKey(propertyName);
     }
-    
+
     /**
      * Supports to record the event which raise to this listener.
-     *
+     * 
      * @param event
      */
     private void recordEvent(PropertyChangeEvent event) {
       eventHolder.put(event.getPropertyName(), event);
     }
-    
+
   }
-  
+
 }

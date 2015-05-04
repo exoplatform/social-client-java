@@ -18,11 +18,10 @@ package org.exoplatform.social.client.api.service;
 
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.auth.AccessDeniedException;
-import org.exoplatform.social.client.api.auth.NotFoundException;
 
 /**
  * eXo Social Service.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
@@ -30,7 +29,7 @@ public interface Service<M> {
 
   /**
    * Creates a new instance.
-   *
+   * 
    * @param newInstance new instance
    * @return the created instance
    * @throws AccessDeniedException
@@ -40,6 +39,7 @@ public interface Service<M> {
 
   /**
    * Gets an existing instance by its uuid.
+   * 
    * @param uuid the uuid
    * @return an existing instance
    * @throws AccessDeniedException
@@ -49,7 +49,7 @@ public interface Service<M> {
 
   /**
    * Updates an existing instance.
-   *
+   * 
    * @param existingInstance
    * @return new updated instance
    * @throws AccessDeniedException
@@ -59,7 +59,7 @@ public interface Service<M> {
 
   /**
    * Deletes an existing instance.
-   *
+   * 
    * @param existingInstance
    * @return the deleted instance
    * @throws AccessDeniedException

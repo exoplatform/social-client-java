@@ -16,28 +16,30 @@
  */
 package org.exoplatform.social.client.api.common;
 
-import org.exoplatform.social.client.api.SocialClientLibException;
-import org.exoplatform.social.client.api.auth.AccessDeniedException;
-import org.exoplatform.social.client.api.auth.NotFoundException;
-
 import java.util.List;
+
+import org.exoplatform.social.client.api.SocialClientLibException;
 
 /**
  * The List Access for accessing list.
  * <p/>
  * This is useful for lazy fetch data.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since May 19, 2011
  */
 public interface ListAccess<E> {
 
   /**
-   * <p>Retrieves an array of objects from the list access.
+   * <p>
+   * Retrieves an array of objects from the list access.
    * <p/>
-   * <p>The index value and the lenght value cannot be negative, and the sum of the index and the length cannot be
-   * greater than the list size. Those values are considered as non correct.<p>
-   *
+   * <p>
+   * The index value and the lenght value cannot be negative, and the sum of the
+   * index and the length cannot be greater than the list size. Those values are
+   * considered as non correct.
+   * <p>
+   * 
    * @param index the index
    * @param limit the limit
    * @return the array
@@ -46,7 +48,7 @@ public interface ListAccess<E> {
 
   /**
    * Retrieves a list of objects from the list access.
-   *
+   * 
    * @param index
    * @param limit
    * @return a list
@@ -55,7 +57,7 @@ public interface ListAccess<E> {
 
   /**
    * Returns the list size.
-   *
+   * 
    * @return the size
    */
   int getSize();

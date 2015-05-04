@@ -29,40 +29,39 @@ import org.exoplatform.social.client.api.util.CRUDLifecycleSupport;
 import org.exoplatform.social.client.api.util.LifecycleSupport;
 
 /**
- * Abstract implementation of the <b>Lifecycle</b> interface, CRUDLifecycle interface, 
- * and Service interface, moreover providing common 
- * functionality required when Service execution
+ * Abstract implementation of the <b>Lifecycle</b> interface, CRUDLifecycle
+ * interface, and Service interface, moreover providing common functionality
+ * required when Service execution
  * 
  * @author thanh_vucong
- *
  * @param <M> The object which implements Model interface
  * @param <S> The object which implements Service interface
  */
-public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>, Lifecycle<M,S> {
+public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>, Lifecycle<M, S> {
 
   /**
    * Has this component been started?
    */
-  protected boolean started = false;
-  
+  protected boolean                 started       = false;
+
   /**
    * The lifecycle event support for this component.
    */
-  protected LifecycleSupport<M, S> lifecycle = new LifecycleSupport<M, S>(this);
-  
+  protected LifecycleSupport<M, S>  lifecycle     = new LifecycleSupport<M, S>(this);
+
   /**
    * The crud lifecycle event support for this component.
    */
   protected CRUDLifecycleSupport<M> crudLifecycle = new CRUDLifecycleSupport<M>(this);
-  
-  
+
   /**
    * Prepares for active use of the public methods of this Component.
-   * @exception LifecycleException if this component detects a fatal error
-   *  that prevents it from being started
+   * 
+   * @exception LifecycleException if this component detects a fatal error that
+   *              prevents it from being started
    */
   public void start() throws LifecycleException {
-   
+
     if (started) {
       return;
     }
@@ -70,52 +69,53 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
     lifecycle.broadcastEvent(BEFORE_START_EVENT, null);
 
     started = true;
-    
-    //// Notify our interested LifecycleListeners
+
+    // // Notify our interested LifecycleListeners
     lifecycle.broadcastEvent(START_EVENT, null);
-    
-    //Notify our interested LifecycleListeners
+
+    // Notify our interested LifecycleListeners
     lifecycle.broadcastEvent(AFTER_START_EVENT, null);
   }
-  
+
   /**
    * Gracefully shut down active use of the public methods of this Component.
-   * @exception LifecycleException if this component detects a fatal error
-   *  that needs to be reported
+   * 
+   * @exception LifecycleException if this component detects a fatal error that
+   *              needs to be reported
    */
   public void stop() throws LifecycleException {
     // Validate and update our current component state
     if (!started) {
       return;
     }
-    
+
     // Notify our interested LifecycleListeners
     lifecycle.broadcastEvent(BEFORE_STOP_EVENT, null);
-    
-    //Notify our interested LifecycleListeners
+
+    // Notify our interested LifecycleListeners
     lifecycle.broadcastEvent(STOP_EVENT, null);
     started = false;
-    
+
     // Notify our interested LifecycleListeners
     lifecycle.broadcastEvent(AFTER_STOP_EVENT, null);
 
   }
-  
+
   /**
    * Adds a lifecycle event listener to this component.
    * 
    * @param listener The listener is added
    */
-  public void addLifecycleListener(LifecycleListener<M,S> listener) {
+  public void addLifecycleListener(LifecycleListener<M, S> listener) {
     lifecycle.addLifecycleListener(listener);
   }
-  
+
   /**
    * Removes a lifecycle event listener which was added to this component.
-   *
+   * 
    * @param listener The listener will be removed.
    */
-  public void removeLifecycleListener(LifecycleListener<M,S> listener) {
+  public void removeLifecycleListener(LifecycleListener<M, S> listener) {
     lifecycle.removeLifecycleListener(listener);
   }
 
@@ -126,7 +126,7 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public LifecycleListener<M, S>[] findLifecycleListeners() {
     return lifecycle.findLifecycleListeners();
   }
-  
+
   /**
    * Adds a CRUD lifecycle event listener to this component.
    * 
@@ -135,9 +135,10 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public void addCRUDLifecycleListener(CRUDLifecycleListener<M> listener) {
     crudLifecycle.addCRUDLifecycleListener(listener);
   }
-  
+
   /**
    * Removes a crud lifecycle event listener which was added to this component.
+   * 
    * @param listener The listener will be removed.
    */
   public void removeCRUDLifecycleListener(CRUDLifecycleListener<M> listener) {
@@ -155,7 +156,7 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   /**
    * This implementation performs the corresponding action for CRUD operation.
    * Create the newInstance model order by preCreate(), create(), postCreate();
-   *
+   * 
    * @param newInstance A new instance
    * @throws AccessDeniedException
    * @throws ServiceException
@@ -165,22 +166,21 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
     create(newInstance);
     postCreate(newInstance);
   }
-  
- /**
-  * Overrides this method to perform pre-processing on new model being saved.
-  *
-  * @param newInstance A new instance
-  * @throws AccessDeniedException
-  * @throws ServiceException
-  */
+
+  /**
+   * Overrides this method to perform pre-processing on new model being saved.
+   * 
+   * @param newInstance A new instance
+   * @throws AccessDeniedException
+   * @throws ServiceException
+   */
   public void preCreate(M newInstance) throws SocialClientLibException {
     crudLifecycle.broadcastEvent(BEFORE_CREATE_EVENT, newInstance);
   }
-  
-  
+
   /**
    * Overrides this method to perform post-processing on new model being saved.
-   *
+   * 
    * @param newInstance A new instance
    * @throws AccessDeniedException
    * @throws ServiceException
@@ -188,10 +188,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public void postCreate(M newInstance) throws SocialClientLibException {
     crudLifecycle.broadcastEvent(AFTER_CREATE_EVENT, newInstance);
   }
-  
+
   /**
    * This implementation performs the corresponding action for CRUD operation.
-   * Delete the existingInstance model order by preDelete(), delete(), postDelete();
+   * Delete the existingInstance model order by preDelete(), delete(),
+   * postDelete();
    * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
@@ -202,10 +203,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
     delete(existingInstance);
     postDelete(existingInstance);
   }
-  
+
   /**
-   * Overrides this method to perform pre-processing on existing model being deleted.
-   *
+   * Overrides this method to perform pre-processing on existing model being
+   * deleted.
+   * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
    * @throws ServiceException
@@ -213,10 +215,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public void preDelete(M existingInstance) throws SocialClientLibException {
     crudLifecycle.broadcastEvent(BEFORE_DELETE_EVENT, existingInstance);
   }
-  
+
   /**
-   * Overrides this method to perform post-processing on existing model being deleted.
-   *
+   * Overrides this method to perform post-processing on existing model being
+   * deleted.
+   * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
    * @throws ServiceException
@@ -224,10 +227,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public void postDelete(M existingInstance) throws SocialClientLibException {
     crudLifecycle.broadcastEvent(AFTER_DELETE_EVENT, existingInstance);
   }
-  
+
   /**
    * This implementation performs the corresponding action for CRUD operation.
-   * Updating the existingInstance model order by preUpdate(), update(), postUpdate();
+   * Updating the existingInstance model order by preUpdate(), update(),
+   * postUpdate();
    * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
@@ -238,10 +242,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
     update(existingInstance);
     postUpdate(existingInstance);
   }
-  
+
   /**
-   * Overrides this method to perform pre-processing on existing model being updated.
-   *
+   * Overrides this method to perform pre-processing on existing model being
+   * updated.
+   * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
    * @throws ServiceException
@@ -249,10 +254,11 @@ public abstract class ServiceBase<M, S> implements Service<M>, CRUDLifecycle<M>,
   public void preUpdate(M existingInstance) throws SocialClientLibException {
     crudLifecycle.broadcastEvent(BEFORE_UPDATE_EVENT, existingInstance);
   }
-  
+
   /**
-   * Overrides this method to perform post-processing on existing model being updated.
-   *
+   * Overrides this method to perform post-processing on existing model being
+   * updated.
+   * 
    * @param existingInstance An existing instance
    * @throws AccessDeniedException
    * @throws ServiceException

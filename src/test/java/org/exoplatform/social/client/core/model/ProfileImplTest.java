@@ -16,16 +16,16 @@
  */
 package org.exoplatform.social.client.core.model;
 
-import org.exoplatform.social.client.api.model.RestProfile;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.exoplatform.social.client.api.model.RestProfile;
+import org.testng.annotations.Test;
+
 /**
  * Unit Test for {@link RestProfile}.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jun 29, 2011
  */

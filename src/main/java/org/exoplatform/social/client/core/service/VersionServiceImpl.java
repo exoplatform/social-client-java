@@ -16,39 +16,36 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleErrorWithRedirect;
+
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.params.HttpClientParams;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
 import org.exoplatform.social.client.api.SocialClientContext;
 import org.exoplatform.social.client.api.auth.RedirectException;
 import org.exoplatform.social.client.api.net.SocialHttpClient.POLICY;
 import org.exoplatform.social.client.api.service.ServiceException;
 import org.exoplatform.social.client.api.service.VersionService;
 import org.exoplatform.social.client.api.util.SocialJSONDecodingSupport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.*;
 
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
 public class VersionServiceImpl implements VersionService {
 
-  private final static String VERSION_FIELD = "version";
+  private final static String VERSION_FIELD   = "version";
+
   private final static String SUPPORTED_FIELD = "versions";
 
   @Override
-  public String getLatest() throws ServiceException{
+  public String getLatest() throws ServiceException {
     final String targetURL = "/" + SocialClientContext.getRestContextName() + "/api/social/version/latest.json";
 
     try {
@@ -64,7 +61,6 @@ public class VersionServiceImpl implements VersionService {
       throw new ServiceException(VersionServiceImpl.class, "Failed to getLatest version", pex);
     }
   }
-
 
   private String getLatestAfterRedirect(String newUrl) throws ServiceException {
     URL url;
@@ -103,5 +99,4 @@ public class VersionServiceImpl implements VersionService {
     }
   }
 
-  
 }

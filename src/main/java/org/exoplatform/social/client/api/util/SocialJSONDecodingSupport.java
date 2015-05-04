@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -34,21 +35,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * Created by The eXo Platform SAS
- * Author : eXoPlatform
- *          exo@exoplatform.com
- * Jun 30, 2011  
+ * Created by The eXo Platform SAS Author : eXoPlatform exo@exoplatform.com Jun
+ * 30, 2011
  */
 public class SocialJSONDecodingSupport {
   /**
-   * Parse JSON text into java Model object from the input source.
-   * and then it's base on the class type.
+   * Parse JSON text into java Model object from the input source. and then it's
+   * base on the class type.
    * 
    * @param <T> Generic type must extend from Model.
    * @param clazz Class type.
    * @param jsonContent Json content which you need to create the Model
    * @throws ParseException Throw this exception if any
-   * 
    */
   public static <T extends Model> T parser(final Class<T> clazz, String jsonContent) throws ParseException {
     JSONParser parser = new JSONParser();
@@ -69,10 +67,10 @@ public class SocialJSONDecodingSupport {
     };
     return (T) parser.parse(jsonContent, containerFactory);
   }
-  
+
   /**
-   * Parse JSON text into java Model object from the input source.
-   * and then it's base on the class type.
+   * Parse JSON text into java Model object from the input source. and then it's
+   * base on the class type.
    * 
    * @param <T> Generic type must extend from Model.
    * @param clazz Class type.
@@ -81,23 +79,23 @@ public class SocialJSONDecodingSupport {
    * @throws IOException Throw this exception if any
    */
   public static <T extends Model> T parser(final Class<T> clazz, HttpResponse response) throws IOException, ParseException {
-    //Read InputStream from HttpResponse to Buffered
+    // Read InputStream from HttpResponse to Buffered
     HttpEntity entity = SocialHttpClientSupport.processContent(response);
-    //Check the content length
+    // Check the content length
     if (entity.getContentLength() != -1) {
-      //getting the HttpResponse content
+      // getting the HttpResponse content
       String jsonContent = EntityUtils.toString(entity);
-      //close stream
+      // close stream
       SocialHttpClientSupport.consume(entity);
       return parser(clazz, jsonContent);
     } else {
       return null;
     }
   }
-  
+
   /**
    * Parse JSON text into java Map object from the input source.
-   *  
+   * 
    * @param jsonContent Json content which you need to create the Model
    * @throws ParseException Throw this exception if any
    */
@@ -109,7 +107,7 @@ public class SocialJSONDecodingSupport {
       }
 
       public Map createObjectContainer() {
-          return new LinkedHashMap();
+        return new LinkedHashMap();
       }
     };
     return (Map) parser.parse(jsonContent, containerFactory);
@@ -117,7 +115,7 @@ public class SocialJSONDecodingSupport {
 
   /**
    * HttpResponse text into java Map object from the input source.
-   *  
+   * 
    * @param response HttpResponse to get the content.
    * @throws ParseException Throw this exception if any
    */
@@ -132,7 +130,6 @@ public class SocialJSONDecodingSupport {
   }
 
   /**
-   *  
    * @author Ly Minh Phuong - http://phuonglm.net
    * @param <T>
    * @param clazz
@@ -141,23 +138,23 @@ public class SocialJSONDecodingSupport {
    * @throws IOException
    * @throws ParseException
    */
-  public static <T extends Model > List<T> JSONArrayObjectParser(final Class<T> clazz, HttpResponse response) throws IOException, ParseException{
-    //Read InputStream from HttpResponse to Buffered
+  public static <T extends Model> List<T> JSONArrayObjectParser(final Class<T> clazz, HttpResponse response) throws IOException,
+                                                                                                            ParseException {
+    // Read InputStream from HttpResponse to Buffered
     HttpEntity entity = SocialHttpClientSupport.processContent(response);
-    //Check the content length
+    // Check the content length
     if (entity.getContentLength() != -1) {
-      //getting the HttpResponse content
+      // getting the HttpResponse content
       String jsonContent = EntityUtils.toString(entity);
-      //close stream
+      // close stream
       SocialHttpClientSupport.consume(entity);
       return JSONArrayObjectParser(clazz, jsonContent);
     } else {
       return null;
     }
   }
-  
+
   /**
-   * 
    * @author Ly Minh Phuong - http://phuonglm.net
    * @param <T>
    * @param clazz
@@ -166,12 +163,13 @@ public class SocialJSONDecodingSupport {
    * @throws IOException
    * @throws ParseException
    */
-  public static <T extends Model > List<T> JSONArrayObjectParser(final Class<T> clazz, String jsonArrayContent) throws IOException, ParseException{
-    JSONArray jsonResultArray = (JSONArray)JSONValue.parse(jsonArrayContent);
+  public static <T extends Model> List<T> JSONArrayObjectParser(final Class<T> clazz, String jsonArrayContent) throws IOException,
+                                                                                                              ParseException {
+    JSONArray jsonResultArray = (JSONArray) JSONValue.parse(jsonArrayContent);
     List<T> result = new ArrayList<T>();
     for (Object jsonObject : jsonResultArray) {
       String jsonString = jsonObject.toString();
-      result.add(parser(clazz,jsonString));
+      result.add(parser(clazz, jsonString));
     }
     return result;
   }

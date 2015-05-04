@@ -16,6 +16,11 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.testng.Assert.fail;
+
 import org.exoplatform.social.client.api.SocialClientLibException;
 import org.exoplatform.social.client.api.UnsupportedMethodException;
 import org.exoplatform.social.client.api.model.RestIdentity;
@@ -25,19 +30,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.testng.Assert.fail;
-
 /**
  * Unit Test for {@link IdentityServiceImplV1Alpha1}.
- *
+ * 
  * @author <a href="http://hoatle.net">hoatle (hoatlevan at gmail dot com)</a>
  * @since Jul 1, 2011
  */
 public class IdentityServiceV1Alpha2IT extends AbstractClientTestV1Alpha2 {
-
 
   @BeforeMethod
   @Override

@@ -16,6 +16,11 @@
  */
 package org.exoplatform.social.client.core.service;
 
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.buildCommonRestPathFromContext;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.executeGet;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.getContent;
+import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.handleError;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,19 +40,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import static org.exoplatform.social.client.api.util.SocialHttpClientSupport.*;
-
 /**
- * Created by The eXo Platform SAS
- * Author : phuonglm
- *          phuonglm@exoplatform.com
- * Jul 5, 2011  
+ * Created by The eXo Platform SAS Author : phuonglm phuonglm@exoplatform.com
+ * Jul 5, 2011
  */
 public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<RestActivity> {
 
-  /** The activity type.*/
+  /** The activity type. */
   public static enum ActivityType {
-    /** Activities of identity, connections of identity, spaces where identity is manager or member. */
+    /**
+     * Activities of identity, connections of identity, spaces where identity is
+     * manager or member.
+     */
     ACTIVITY_FEED,
     /** Activities of identity (provider is organization or space). */
     ACTIVITY_STREAM,
@@ -56,18 +60,19 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
     /** Activities of spaces where identity is member or manager. */
     USER_SPACE_ACTIVITIES
   }
+
   /** The activity type. */
-  private ActivityType activityType;
-  
+  private ActivityType        activityType;
+
   /** The identity. */
-  private RestIdentity ownerIdentity;
-  
+  private RestIdentity        ownerIdentity;
+
   /** Query param */
-  QueryParams queryParams = new QueryParamsImpl();
+  QueryParams                 queryParams = new QueryParamsImpl();
 
   /** The base url. */
-  private static final String BASE_URL = buildCommonRestPathFromContext(true);
-  
+  private static final String BASE_URL    = buildCommonRestPathFromContext(true);
+
   /**
    * The constructor.
    * 
@@ -77,18 +82,18 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
   public ActivitiesRealtimeListAccessV1Alpha3(RestIdentity ownerIdentity, ActivityType activityType, QueryParams queryParams) {
     this.ownerIdentity = ownerIdentity;
     this.activityType = activityType;
-    if(queryParams != null ){
+    if (queryParams != null) {
       this.queryParams.append(queryParams.get(QueryParams.NUMBER_OF_COMMENTS_PARAM));
       this.queryParams.append(queryParams.get(QueryParams.NUMBER_OF_LIKES_PARAM));
     }
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
   public int getNumberOfNewer(RestActivity baseElement) {
-    //TODO
+    // TODO
     return 0;
   }
 
@@ -97,7 +102,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
    */
   @Override
   public int getNumberOfOlder(RestActivity baseElement) {
-    //TODO
+    // TODO
     return 0;
   }
 
@@ -135,25 +140,25 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
     queryParams.append(QueryParams.LIMIT_PARAM.setValue(limit));
     queryParams.append(QueryParams.SINCE_ID_PARAM.setValue(baseElement.getId()));
     switch (activityType) {
-      case ACTIVITY_STREAM: {
-        requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?"+queryParams.buildQuery();
-        break;
-      }
-      
-      case ACTIVITY_FEED: {
-        requestURL = BASE_URL + "activity_stream/feed.json?" + queryParams.buildQuery();
-        break;
-      }
-      
-      case CONNECTIONS_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/connections.json?" + queryParams.buildQuery();
-        break;
-      }
-      
-      case USER_SPACE_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/spaces.json?" + queryParams.buildQuery();
-        break;
-      }
+    case ACTIVITY_STREAM: {
+      requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case ACTIVITY_FEED: {
+      requestURL = BASE_URL + "activity_stream/feed.json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case CONNECTIONS_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/connections.json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case USER_SPACE_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/spaces.json?" + queryParams.buildQuery();
+      break;
+    }
     }
     queryParams.remove(QueryParams.LIMIT_PARAM);
     queryParams.remove(QueryParams.SINCE_ID_PARAM);
@@ -162,7 +167,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
       response = executeGet(requestURL, POLICY.BASIC_AUTH);
       handleError(response);
     } catch (SocialHttpClientException e) {
-      throw new ServiceException(e.getMessage(),e);
+      throw new ServiceException(e.getMessage(), e);
     }
     return this.getListActivitiesFromResponse(response);
   }
@@ -185,25 +190,25 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
     queryParams.append(QueryParams.LIMIT_PARAM.setValue(limit));
     queryParams.append(QueryParams.MAX_ID_PARAM.setValue(baseElement.getId()));
     switch (activityType) {
-      case ACTIVITY_STREAM: {
-        requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?"+queryParams.buildQuery();
-        break;
-      }
-      
-      case ACTIVITY_FEED: {
-        requestURL = BASE_URL + "activity_stream/feed.json?" + queryParams.buildQuery();
-        break;
-      }
-      
-      case CONNECTIONS_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/connections.json?" + queryParams.buildQuery();
-        break;
-      }
-      
-      case USER_SPACE_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/spaces.json?" + queryParams.buildQuery();
-        break;
-      }
+    case ACTIVITY_STREAM: {
+      requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case ACTIVITY_FEED: {
+      requestURL = BASE_URL + "activity_stream/feed.json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case CONNECTIONS_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/connections.json?" + queryParams.buildQuery();
+      break;
+    }
+
+    case USER_SPACE_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/spaces.json?" + queryParams.buildQuery();
+      break;
+    }
     }
     queryParams.remove(QueryParams.LIMIT_PARAM);
     queryParams.remove(QueryParams.MAX_ID_PARAM);
@@ -211,7 +216,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
       response = executeGet(requestURL, POLICY.BASIC_AUTH);
       handleError(response);
     } catch (SocialHttpClientException e) {
-      throw new ServiceException(e.getMessage(),e);
+      throw new ServiceException(e.getMessage(), e);
     }
     return this.getListActivitiesFromResponse(response);
   }
@@ -221,7 +226,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
    */
   @Override
   public int getSize() {
-    //TODO
+    // TODO
     return 0;
   }
 
@@ -241,31 +246,31 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
     String requestURL = null;
     HttpResponse response = null;
     switch (activityType) {
-      case ACTIVITY_STREAM: {
-        requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?limit=" + limit;
-        break;
-      }
-      
-      case ACTIVITY_FEED: {
-        requestURL = BASE_URL + "activity_stream/feed.json?limit=" + limit;
-        break;
-      }
-      
-      case CONNECTIONS_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/connections.json?limit=" + limit;
-        break;
-      }
-      
-      case USER_SPACE_ACTIVITIES: {
-        requestURL = BASE_URL + "activity_stream/spaces.json?limit=" + limit;
-        break;
-      }
+    case ACTIVITY_STREAM: {
+      requestURL = BASE_URL + "activity_stream/" + this.ownerIdentity.getId() + ".json?limit=" + limit;
+      break;
+    }
+
+    case ACTIVITY_FEED: {
+      requestURL = BASE_URL + "activity_stream/feed.json?limit=" + limit;
+      break;
+    }
+
+    case CONNECTIONS_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/connections.json?limit=" + limit;
+      break;
+    }
+
+    case USER_SPACE_ACTIVITIES: {
+      requestURL = BASE_URL + "activity_stream/spaces.json?limit=" + limit;
+      break;
+    }
     }
     try {
       response = executeGet(requestURL, POLICY.BASIC_AUTH);
       handleError(response);
     } catch (SocialHttpClientException e) {
-      throw new ServiceException(e.getMessage(),e);
+      throw new ServiceException(e.getMessage(), e);
     }
     return this.getListActivitiesFromResponse(response);
   }
@@ -296,7 +301,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
   public RestIdentity getOwnerIdentity() {
     return this.ownerIdentity;
   }
-  
+
   /**
    * Sets the identity.
    * 
@@ -305,7 +310,7 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
   public void setOwnerIdentity(RestIdentity ownerIdentity) {
     this.ownerIdentity = ownerIdentity;
   }
-  
+
   /**
    * Gets the list activities from response.
    * 
@@ -315,16 +320,17 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
   private List<RestActivity> getListActivitiesFromResponse(HttpResponse response) {
     try {
       JSONObject jsonObject = (JSONObject) JSONValue.parse(getContent(response));
-      JSONArray jsonArray =  (JSONArray)jsonObject.get("activities");
-      List<RestActivity> activities = SocialJSONDecodingSupport.JSONArrayObjectParser(RestActivity.class, jsonArray.toJSONString());
+      JSONArray jsonArray = (JSONArray) jsonObject.get("activities");
+      List<RestActivity> activities = SocialJSONDecodingSupport.JSONArrayObjectParser(RestActivity.class,
+                                                                                      jsonArray.toJSONString());
       List<RestActivity> copyRestActivities = new ArrayList(activities);
       Collections.copy(copyRestActivities, activities);
       return copyRestActivities;
     } catch (Exception e) {
-      throw new ServiceException(ActivityService.class,"invalid response",null);
+      throw new ServiceException(ActivityService.class, "invalid response", null);
     }
   }
-  
+
   /**
    * Converts a list to an array.
    * 
@@ -333,6 +339,6 @@ public class ActivitiesRealtimeListAccessV1Alpha3 implements RealtimeListAccess<
    * @return An array with the same type of element in list.
    */
   private <T> T[] convertListToArray(List<T> list, Class<T> type) {
-    return list.toArray((T[])java.lang.reflect.Array.newInstance(type, list.size()));
+    return list.toArray((T[]) java.lang.reflect.Array.newInstance(type, list.size()));
   }
 }
