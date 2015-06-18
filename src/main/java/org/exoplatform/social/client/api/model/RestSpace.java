@@ -19,8 +19,10 @@
 package org.exoplatform.social.client.api.model;
 
 /**
- * Created by The eXo Platform SAS Author : Philippe Aristote
- * paristote@exoplatform.com Apr 21, 2015
+ * Created by The eXo Platform SAS
+ * 
+ * @author Philippe Aristote paristote@exoplatform.com
+ * @since Apr 21, 2015
  */
 public class RestSpace extends Model {
 
@@ -30,7 +32,9 @@ public class RestSpace extends Model {
 
     AVATAR_URL("avatarUrl"),
 
-    NAME("name");
+    NAME("name"),
+
+    GROUP_ID("groupId");
 
     private final String jsonString;
 
@@ -69,6 +73,14 @@ public class RestSpace extends Model {
 
   public String getName() {
     return getFieldAsString(Field.NAME.toString());
+  }
+
+  public void setGroupId(String id) {
+    setField(Field.GROUP_ID.toString(), id);
+  }
+
+  public String getGroupId() {
+    return getFieldAsString(Field.GROUP_ID.toString());
   }
 
 }

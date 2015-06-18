@@ -55,15 +55,20 @@ public class RestActivity extends Model {
   /**
    * The logger
    */
-  private static final Logger LOGGER                = LoggerFactory.getLogger(RestActivity.class);
+  private static final Logger LOGGER                      = LoggerFactory.getLogger(RestActivity.class);
 
-  public final static String  DOC_ACTIVITY_TYPE     = "DOC_ACTIVITY";
+  public final static String  DOC_ACTIVITY_TYPE           = "DOC_ACTIVITY";
 
-  public final static String  DEFAULT_ACTIVITY_TYPE = "DEFAULT_ACTIVITY";
+  // Should be "files:spaces" but in that case, we need the JCR UUID of the file
+  public final static String  SPACE_DOC_ACTIVITY_TYPE     = "DOC_ACTIVITY";
 
-  public final static String  LINK_ACTIVITY_TYPE    = "LINK_ACTIVITY";
+  public final static String  DEFAULT_ACTIVITY_TYPE       = "DEFAULT_ACTIVITY";
 
-  public final static String  SPACE_ACTIVITY_TYPE   = "exosocial:spaces";
+  public final static String  SPACE_DEFAULT_ACTIVITY_TYPE = "exosocial:spaces";
+
+  public final static String  LINK_ACTIVITY_TYPE          = "LINK_ACTIVITY";
+
+  public final static String  SPACE_LINK_ACTIVITY_TYPE    = "LINK_ACTIVITY";
 
   /**
    * The fields that represent the activity object in json form.

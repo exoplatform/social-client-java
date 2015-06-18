@@ -57,9 +57,7 @@ public class ActivityServiceImplV1Alpha3 extends ServiceBase<RestActivity, Activ
    */
   @Override
   public RestActivity create(RestActivity newInstance) throws SocialClientLibException {
-    boolean toSpace = RestActivity.SPACE_ACTIVITY_TYPE.equals(newInstance.getType());
-    final String POST_ACTIVITY_REQUEST_URL = BASE_URL + "activity.json"
-        + (toSpace ? "?identity_id=" + newInstance.getIdentityId() : "");
+    final String POST_ACTIVITY_REQUEST_URL = BASE_URL + "activity.json";
     try {
       HttpResponse response = executePost(POST_ACTIVITY_REQUEST_URL, POLICY.BASIC_AUTH, newInstance);
       String responseContent = getContent(response);
