@@ -45,6 +45,7 @@ import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.BasicHttpProcessor;
 import org.apache.http.protocol.ExecutionContext;
@@ -59,6 +60,12 @@ import org.exoplatform.social.client.api.net.SocialHttpClient;
  * 29, 2011
  */
 public final class SocialHttpClientImpl implements SocialHttpClient {
+  
+  private static String USER_AGENT = "eXo/ (Android)";
+  
+  public static void setUserAgent(String agent) {
+    USER_AGENT = agent;
+  }
 
   // Gzip of data shorter than this probably won't be worthwhile
   public static long              DEFAULT_SYNC_MIN_GZIP_BYTES = 256;
@@ -111,7 +118,9 @@ public final class SocialHttpClientImpl implements SocialHttpClient {
     // Don't handle redirects -- return them to the caller. Our code
     // often wants to re-POST after a redirect, which we must do ourselves.
     HttpClientParams.setRedirecting(params, false);
-
+    
+    HttpProtocolParams.setUserAgent(params, USER_AGENT);
+    
     SchemeRegistry schemeRegistry = new SchemeRegistry();
     schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
 

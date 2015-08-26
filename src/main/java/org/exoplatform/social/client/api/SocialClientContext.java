@@ -22,6 +22,8 @@ import java.util.List;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 
+import org.exoplatform.social.client.core.net.SocialHttpClientImpl;
+
 /**
  * The client context to hold states of: host, port, portalContainerName,
  * restContextName and rest version and auth schema.
@@ -68,6 +70,10 @@ public class SocialClientContext {
     supportedVersionList.add(SupportedVersion.V1_ALPHA1.toString());
   }
 
+  public static void setUserAgent(String agent) {
+    SocialHttpClientImpl.setUserAgent(agent);
+  }
+  
   /**
    * Gets host of the portal container to access services.
    * 
