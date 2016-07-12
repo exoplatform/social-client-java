@@ -28,6 +28,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.AuthState;
 import org.apache.http.auth.Credentials;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.auth.params.AuthPNames;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.ResponseHandler;
@@ -234,6 +235,7 @@ public final class SocialHttpClientImpl implements SocialHttpClient {
     delegate.getCredentialsProvider().setCredentials(new AuthScope(SocialClientContext.getHost(), SocialClientContext.getPort()),
                                                      new UsernamePasswordCredentials(SocialClientContext.getUsername(),
                                                                                      SocialClientContext.getPassword()));
+    delegate.getParams().setParameter(AuthPNames.CREDENTIAL_CHARSET, "ISO-8859-1");
     delegate.addRequestInterceptor(preemptiveAuthInterceptor, 0);
   }
 }
