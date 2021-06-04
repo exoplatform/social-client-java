@@ -44,7 +44,7 @@
 
     <!-- project dependencies versions -->
     <json_simple.version>1.1</json_simple.version>
-    <org.apache.httpclient.version>4.0</org.apache.httpclient.version>
+    <org.apache.httpclient.version>4.5.13</org.apache.httpclient.version>
     <org.slf4j.version>1.7.5</org.slf4j.version>
     
     <org.testng.version>6.1.1</org.testng.version>
